@@ -1,0 +1,3110 @@
+{
+  "user": {
+    "id": "11519429",
+    "email": "pietrofranchitti@hotmail.it",
+    "username": "Pietrolone",
+    "created_at": "2017-02-22 12:54:19"
+  },
+  "tracked": [
+    {
+      "media_id": 70350,
+      "media_type": "tv",
+      "title": "Neon Genesis Evangelion",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 70566,
+      "media_type": "tv",
+      "title": "Trailer Park Boys",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 71278,
+      "media_type": "tv",
+      "title": "Hellsing",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 71663,
+      "media_type": "tv",
+      "title": "The Simpsons",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 72108,
+      "media_type": "tv",
+      "title": "NCIS",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 72173,
+      "media_type": "tv",
+      "title": "Arrested Development",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 73244,
+      "media_type": "tv",
+      "title": "The Office (US)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 73739,
+      "media_type": "tv",
+      "title": "Lost",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 74205,
+      "media_type": "tv",
+      "title": "Band of Brothers",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 74845,
+      "media_type": "tv",
+      "title": "Weeds",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 75760,
+      "media_type": "tv",
+      "title": "How I Met Your Mother",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 75805,
+      "media_type": "tv",
+      "title": "It's Always Sunny in Philadelphia",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 76156,
+      "media_type": "tv",
+      "title": "Scrubs",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 76321,
+      "media_type": "tv",
+      "title": "Freaks and Geeks",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 77680,
+      "media_type": "tv",
+      "title": "Trigun",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 78107,
+      "media_type": "tv",
+      "title": "The Office",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 78914,
+      "media_type": "tv",
+      "title": "Full Metal Panic!",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 79168,
+      "media_type": "tv",
+      "title": "Friends",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 79335,
+      "media_type": "tv",
+      "title": "Psych",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 80337,
+      "media_type": "tv",
+      "title": "Mad Men",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 81472,
+      "media_type": "tv",
+      "title": "Dragon Ball Z",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 82276,
+      "media_type": "tv",
+      "title": "Boris",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 94571,
+      "media_type": "tv",
+      "title": "Community",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 94991,
+      "media_type": "tv",
+      "title": "Cougar Town",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 95011,
+      "media_type": "tv",
+      "title": "Modern Family",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 121361,
+      "media_type": "tv",
+      "title": "Game of Thrones",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 134511,
+      "media_type": "tv",
+      "title": "Blue Mountain State",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 153021,
+      "media_type": "tv",
+      "title": "The Walking Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 161511,
+      "media_type": "tv",
+      "title": "Shameless (US)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 167571,
+      "media_type": "tv",
+      "title": "Happy Endings",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 171591,
+      "media_type": "tv",
+      "title": "High School of the Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 176941,
+      "media_type": "tv",
+      "title": "Sherlock",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 247808,
+      "media_type": "tv",
+      "title": "Suits",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 248682,
+      "media_type": "tv",
+      "title": "New Girl",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 248812,
+      "media_type": "tv",
+      "title": "Don't Trust the B---- in Apartment 23",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 251889,
+      "media_type": "tv",
+      "title": "Fresh Meat",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 253463,
+      "media_type": "tv",
+      "title": "Black Mirror",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 253573,
+      "media_type": "tv",
+      "title": "American Gods",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 256227,
+      "media_type": "tv",
+      "title": "The Newsroom (2012)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 261690,
+      "media_type": "tv",
+      "title": "The Americans (2013)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 261795,
+      "media_type": "tv",
+      "title": "Cheer",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 262558,
+      "media_type": "tv",
+      "title": "Cuckoo",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 262980,
+      "media_type": "tv",
+      "title": "House of Cards (US)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 264511,
+      "media_type": "tv",
+      "title": "Euphoria (2012)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 264991,
+      "media_type": "tv",
+      "title": "Utopia",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 265766,
+      "media_type": "tv",
+      "title": "Penny Dreadful",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 265912,
+      "media_type": "tv",
+      "title": "Helix",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 269586,
+      "media_type": "tv",
+      "title": "Brooklyn Nine-Nine",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 270550,
+      "media_type": "tv",
+      "title": "Drunk History",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 270915,
+      "media_type": "tv",
+      "title": "Peaky Blinders",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 275295,
+      "media_type": "tv",
+      "title": "Murders at Barlume",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 276312,
+      "media_type": "tv",
+      "title": "From Dusk Till Dawn: The Series",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 276564,
+      "media_type": "tv",
+      "title": "The Strain",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 278335,
+      "media_type": "tv",
+      "title": "Mozart in the Jungle",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 279392,
+      "media_type": "tv",
+      "title": "Deadbeat",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 280494,
+      "media_type": "tv",
+      "title": "Z Nation",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 281249,
+      "media_type": "tv",
+      "title": "Tokyo Ghoul",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 281470,
+      "media_type": "tv",
+      "title": "iZombie",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 281589,
+      "media_type": "tv",
+      "title": "Marry Me (2014)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 281593,
+      "media_type": "tv",
+      "title": "Unbreakable Kimmy Schmidt",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 281621,
+      "media_type": "tv",
+      "title": "Jane the Virgin",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 281632,
+      "media_type": "tv",
+      "title": "Weird Loners",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 282562,
+      "media_type": "tv",
+      "title": "Grace and Frankie",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 286126,
+      "media_type": "tv",
+      "title": "Lovesick",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 289590,
+      "media_type": "tv",
+      "title": "Mr. Robot",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 290853,
+      "media_type": "tv",
+      "title": "Fear the Walking Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 293302,
+      "media_type": "tv",
+      "title": "Scream Queens",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 294560,
+      "media_type": "tv",
+      "title": "Wet Hot American Summer",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 295648,
+      "media_type": "tv",
+      "title": "Superstore",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 295685,
+      "media_type": "tv",
+      "title": "Lucifer",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 295767,
+      "media_type": "tv",
+      "title": "Containment",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 296295,
+      "media_type": "tv",
+      "title": "Ash vs Evil Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 298185,
+      "media_type": "tv",
+      "title": "Bob Torrent",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 298901,
+      "media_type": "tv",
+      "title": "Master of None",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 299857,
+      "media_type": "tv",
+      "title": "A Very Secret Service",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 300472,
+      "media_type": "tv",
+      "title": "Preacher",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 305177,
+      "media_type": "tv",
+      "title": "Crashing",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 305288,
+      "media_type": "tv",
+      "title": "Stranger Things",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 305378,
+      "media_type": "tv",
+      "title": "Love",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 305582,
+      "media_type": "tv",
+      "title": "Wynonna Earp",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 305913,
+      "media_type": "tv",
+      "title": "Degrassi: Next Class",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 306249,
+      "media_type": "tv",
+      "title": "Flaked",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 308772,
+      "media_type": "tv",
+      "title": "Van Helsing",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 309066,
+      "media_type": "tv",
+      "title": "Good Morning Call",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 311711,
+      "media_type": "tv",
+      "title": "The Good Place",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 311833,
+      "media_type": "tv",
+      "title": "Making History (2017)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 311899,
+      "media_type": "tv",
+      "title": "Great News",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 311954,
+      "media_type": "tv",
+      "title": "Riverdale",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 311969,
+      "media_type": "tv",
+      "title": "Trial & Error",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 312104,
+      "media_type": "tv",
+      "title": "Ghosts of Shepherdstown",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 312505,
+      "media_type": "tv",
+      "title": "Dirk Gently's Holistic Detective Agency",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 314189,
+      "media_type": "tv",
+      "title": "Blood Drive",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 314614,
+      "media_type": "tv",
+      "title": "Fleabag",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 314884,
+      "media_type": "tv",
+      "title": "Easy",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 317654,
+      "media_type": "tv",
+      "title": "The Tick (2017)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 318000,
+      "media_type": "tv",
+      "title": "Crazyhead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 318009,
+      "media_type": "tv",
+      "title": "Norsemen",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 318824,
+      "media_type": "tv",
+      "title": "Mariottide",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 319127,
+      "media_type": "tv",
+      "title": "Sick Note",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 319829,
+      "media_type": "tv",
+      "title": "Brown Nation",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 320450,
+      "media_type": "tv",
+      "title": "Santa Clarita Diet",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 320724,
+      "media_type": "tv",
+      "title": "Legion",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 321060,
+      "media_type": "tv",
+      "title": "The OA",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 322191,
+      "media_type": "tv",
+      "title": "The Terror",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 322246,
+      "media_type": "tv",
+      "title": "Girlboss",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 324835,
+      "media_type": "tv",
+      "title": "GLOW",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 325517,
+      "media_type": "tv",
+      "title": "Salvation",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 326791,
+      "media_type": "tv",
+      "title": "The Marvelous Mrs. Maisel",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 327359,
+      "media_type": "tv",
+      "title": "Disjointed",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 327417,
+      "media_type": "tv",
+      "title": "Money Heist",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 328361,
+      "media_type": "tv",
+      "title": "Happy!",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 328595,
+      "media_type": "tv",
+      "title": "Splitting Up Together (US)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 328972,
+      "media_type": "tv",
+      "title": "Friends from College",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 329065,
+      "media_type": "tv",
+      "title": "Castlevania",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 329096,
+      "media_type": "tv",
+      "title": "Ghost Wars",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 330879,
+      "media_type": "tv",
+      "title": "Oats Studios",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 330997,
+      "media_type": "tv",
+      "title": "Future Man",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 332353,
+      "media_type": "tv",
+      "title": "Final Space",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 332828,
+      "media_type": "tv",
+      "title": "American Vandal",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 333595,
+      "media_type": "tv",
+      "title": "The Vietnam War (2017)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 334003,
+      "media_type": "tv",
+      "title": "Superstition",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 334543,
+      "media_type": "tv",
+      "title": "Samantha!",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 336522,
+      "media_type": "tv",
+      "title": "The End of the F***ing World",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 337686,
+      "media_type": "tv",
+      "title": "Blazing Transfer Students",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 338192,
+      "media_type": "tv",
+      "title": "Devilman Crybaby",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 338903,
+      "media_type": "tv",
+      "title": "Derry Girls",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 338947,
+      "media_type": "tv",
+      "title": "Chilling Adventures of Sabrina",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 339273,
+      "media_type": "tv",
+      "title": "On My Block",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 340234,
+      "media_type": "tv",
+      "title": "Disenchantment",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 341230,
+      "media_type": "tv",
+      "title": "Age of the Living Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 341483,
+      "media_type": "tv",
+      "title": "The Joel McHale Show with Joel McHale",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 341551,
+      "media_type": "tv",
+      "title": "Truth Seekers",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 341704,
+      "media_type": "tv",
+      "title": "The Rain",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 343253,
+      "media_type": "tv",
+      "title": "Lost in Space (2018)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 344216,
+      "media_type": "tv",
+      "title": "Skam Italy",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 344643,
+      "media_type": "tv",
+      "title": "Bonding",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 345246,
+      "media_type": "tv",
+      "title": "The Haunting",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 345944,
+      "media_type": "tv",
+      "title": "Diablero",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 346345,
+      "media_type": "tv",
+      "title": "Back with the Ex",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 346755,
+      "media_type": "tv",
+      "title": "Feel The Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 347507,
+      "media_type": "tv",
+      "title": "After Life",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 347648,
+      "media_type": "tv",
+      "title": "Nightflyers",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 347710,
+      "media_type": "tv",
+      "title": "Jinn",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 348117,
+      "media_type": "tv",
+      "title": "Insatiable",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 349187,
+      "media_type": "tv",
+      "title": "The Peripheral",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 349342,
+      "media_type": "tv",
+      "title": "Shining Vale",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 349826,
+      "media_type": "tv",
+      "title": "The Wilds",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350056,
+      "media_type": "tv",
+      "title": "GHOUL",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350264,
+      "media_type": "tv",
+      "title": "Dark Tourist",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350587,
+      "media_type": "tv",
+      "title": "Black Summer",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350796,
+      "media_type": "tv",
+      "title": "1983",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350864,
+      "media_type": "tv",
+      "title": "Maniac (2018)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350869,
+      "media_type": "tv",
+      "title": "The Kominsky Method",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 350995,
+      "media_type": "tv",
+      "title": "Forever (2018)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 353309,
+      "media_type": "tv",
+      "title": "Haunted (2018)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 353913,
+      "media_type": "tv",
+      "title": "Medal of Honor",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 354567,
+      "media_type": "tv",
+      "title": "Sky Rojo",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 354735,
+      "media_type": "tv",
+      "title": "Daybreak (2019)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 355567,
+      "media_type": "tv",
+      "title": "The Boys",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 355622,
+      "media_type": "tv",
+      "title": "Doom Patrol",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 356202,
+      "media_type": "tv",
+      "title": "For All Mankind",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 356317,
+      "media_type": "tv",
+      "title": "Sex Education",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 356640,
+      "media_type": "tv",
+      "title": "Russian Doll",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 357805,
+      "media_type": "tv",
+      "title": "Spectros",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 357888,
+      "media_type": "tv",
+      "title": "Love, Death & Robots",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 358211,
+      "media_type": "tv",
+      "title": "What We Do in the Shadows",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 359569,
+      "media_type": "tv",
+      "title": "Good Omens",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 360261,
+      "media_type": "tv",
+      "title": "Euphoria (US)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 361039,
+      "media_type": "tv",
+      "title": "To the Lake",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 361394,
+      "media_type": "tv",
+      "title": "Selling Sunset",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 361411,
+      "media_type": "tv",
+      "title": "The Politician",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 361644,
+      "media_type": "tv",
+      "title": "State of the Union",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 361753,
+      "media_type": "tv",
+      "title": "The Mandalorian",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 362177,
+      "media_type": "tv",
+      "title": "The Hockey Girls",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 362578,
+      "media_type": "tv",
+      "title": "It's Bruno!",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 362696,
+      "media_type": "tv",
+      "title": "The Witcher",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Want to Watch",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 362753,
+      "media_type": "tv",
+      "title": "I Think You Should Leave with Tim Robinson",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 363118,
+      "media_type": "tv",
+      "title": "Historical Roasts",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 364047,
+      "media_type": "tv",
+      "title": "Motherland: Fort Salem",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 364439,
+      "media_type": "tv",
+      "title": "Emily in Paris",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 365065,
+      "media_type": "tv",
+      "title": "Merry Happy Whatever",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 365442,
+      "media_type": "tv",
+      "title": "Marianne",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 365700,
+      "media_type": "tv",
+      "title": "KAOS",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 365722,
+      "media_type": "tv",
+      "title": "Another Life",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 366211,
+      "media_type": "tv",
+      "title": "The Sandman",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 366524,
+      "media_type": "tv",
+      "title": "Halo",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 366532,
+      "media_type": "tv",
+      "title": "Twisted Metal",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 367226,
+      "media_type": "tv",
+      "title": "Midnight Mass",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 367234,
+      "media_type": "tv",
+      "title": "Cowboy Bebop (2021)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 367553,
+      "media_type": "tv",
+      "title": "Dollface",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 368210,
+      "media_type": "tv",
+      "title": "Tales from the Loop",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 368211,
+      "media_type": "tv",
+      "title": "Upload",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 368401,
+      "media_type": "tv",
+      "title": "SAS Rogue Heroes",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Watched",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 368523,
+      "media_type": "tv",
+      "title": "Living with Yourself",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 368597,
+      "media_type": "tv",
+      "title": "Home for Christmas",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 368667,
+      "media_type": "tv",
+      "title": "Space Force",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 369076,
+      "media_type": "tv",
+      "title": "Into the Night",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 369301,
+      "media_type": "tv",
+      "title": "The Great",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 369414,
+      "media_type": "tv",
+      "title": "30 Coins",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 370114,
+      "media_type": "tv",
+      "title": "Zomboat!",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 371028,
+      "media_type": "tv",
+      "title": "Arcane",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 371258,
+      "media_type": "tv",
+      "title": "Mortel",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 371610,
+      "media_type": "tv",
+      "title": "V-Wars",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 371798,
+      "media_type": "tv",
+      "title": "I May Destroy You",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 371820,
+      "media_type": "tv",
+      "title": "Dispatches from Elsewhere",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 371856,
+      "media_type": "tv",
+      "title": "Singapore Social",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 372316,
+      "media_type": "tv",
+      "title": "Brand New Cherry Flavor",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 372566,
+      "media_type": "tv",
+      "title": "Don't F**k with Cats: Hunting an Internet Killer",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 372637,
+      "media_type": "tv",
+      "title": "The Neighbor",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 372787,
+      "media_type": "tv",
+      "title": "The Walking Dead: World Beyond",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 372974,
+      "media_type": "tv",
+      "title": "Them",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 373186,
+      "media_type": "tv",
+      "title": "Messiah (2020)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 374003,
+      "media_type": "tv",
+      "title": "Medical Police",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 374389,
+      "media_type": "tv",
+      "title": "Sweet Home",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 374441,
+      "media_type": "tv",
+      "title": "Cheer (2020)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 375641,
+      "media_type": "tv",
+      "title": "Rise of Empires: Ottoman",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 375688,
+      "media_type": "tv",
+      "title": "Cagaster of an Insect Cage",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 375998,
+      "media_type": "tv",
+      "title": "I Am Not Okay With This",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 376164,
+      "media_type": "tv",
+      "title": "The Head (2020)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 376459,
+      "media_type": "tv",
+      "title": "Love is Blind",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 376472,
+      "media_type": "tv",
+      "title": "Alice in Borderland (2020)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 377083,
+      "media_type": "tv",
+      "title": "Reality Z",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 377125,
+      "media_type": "tv",
+      "title": "Paranormal",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 377294,
+      "media_type": "tv",
+      "title": "Feel Good",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 377612,
+      "media_type": "tv",
+      "title": "HIT",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 378024,
+      "media_type": "tv",
+      "title": "Brews Brothers",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 378746,
+      "media_type": "tv",
+      "title": "Never Have I Ever",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 379873,
+      "media_type": "tv",
+      "title": "Ragnarok",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Want to Watch",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 379930,
+      "media_type": "tv",
+      "title": "Absurd Planet",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 379962,
+      "media_type": "tv",
+      "title": "Too Hot to Handle",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 381809,
+      "media_type": "tv",
+      "title": "Betaal",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 381909,
+      "media_type": "tv",
+      "title": "The Midnight Club",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 382187,
+      "media_type": "tv",
+      "title": "American Horror Stories",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 382544,
+      "media_type": "tv",
+      "title": "Warrior Nun",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 382556,
+      "media_type": "tv",
+      "title": "Cruel Summer",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 383414,
+      "media_type": "tv",
+      "title": "Kissing Game",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 385320,
+      "media_type": "tv",
+      "title": "Tribes of Europa",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 385415,
+      "media_type": "tv",
+      "title": "La Révolution",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 385713,
+      "media_type": "tv",
+      "title": "Teenage Bounty Hunters",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 385764,
+      "media_type": "tv",
+      "title": "High Score (2020)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 387461,
+      "media_type": "tv",
+      "title": "The Liberator",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 387525,
+      "media_type": "tv",
+      "title": "Resident Evil",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 387697,
+      "media_type": "tv",
+      "title": "Love & Anarchy",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 388567,
+      "media_type": "tv",
+      "title": "The Girl in the Mirror",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 389200,
+      "media_type": "tv",
+      "title": "Resident Evil: Infinite Darkness",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 390093,
+      "media_type": "tv",
+      "title": "Our Flag Means Death",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 390430,
+      "media_type": "tv",
+      "title": "The White Lotus",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 390537,
+      "media_type": "tv",
+      "title": "The Woman in the House Across the Street from the Girl in the Window",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 390936,
+      "media_type": "tv",
+      "title": "Archive 81",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 391020,
+      "media_type": "tv",
+      "title": "Platonic (2023)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 391101,
+      "media_type": "tv",
+      "title": "Outer Range",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 391784,
+      "media_type": "tv",
+      "title": "Vincenzo",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 392256,
+      "media_type": "tv",
+      "title": "The Last of Us",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 392276,
+      "media_type": "tv",
+      "title": "ONE PIECE (2023)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 392358,
+      "media_type": "tv",
+      "title": "The G Word with Adam Conover",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 392573,
+      "media_type": "tv",
+      "title": "Shōgun",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 392708,
+      "media_type": "tv",
+      "title": "God's Favorite Idiot",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393187,
+      "media_type": "tv",
+      "title": "Ahsoka",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393189,
+      "media_type": "tv",
+      "title": "Andor",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393197,
+      "media_type": "tv",
+      "title": "The Acolyte",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393199,
+      "media_type": "tv",
+      "title": "Obi-Wan Kenobi",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393434,
+      "media_type": "tv",
+      "title": "Man Vs Bee",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393589,
+      "media_type": "tv",
+      "title": "The Book of Boba Fett",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 393680,
+      "media_type": "tv",
+      "title": "Bling Empire",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 394680,
+      "media_type": "tv",
+      "title": "Tear Along the Dotted Line",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 394748,
+      "media_type": "tv",
+      "title": "Spycraft",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 396374,
+      "media_type": "tv",
+      "title": "Boo, Bitch",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 396840,
+      "media_type": "tv",
+      "title": "The Lost Pirate Kingdom",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 397060,
+      "media_type": "tv",
+      "title": "Wednesday",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 397444,
+      "media_type": "tv",
+      "title": "Hellbound",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 398425,
+      "media_type": "tv",
+      "title": "Haunted: Latin America",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 399194,
+      "media_type": "tv",
+      "title": "The Rig (2023)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 399959,
+      "media_type": "tv",
+      "title": "Only Murders in the Building",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 401147,
+      "media_type": "tv",
+      "title": "Extraordinary",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 401632,
+      "media_type": "tv",
+      "title": "Framed! A Sicilian Murder Mystery",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 401966,
+      "media_type": "tv",
+      "title": "Wolf Like Me",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 403245,
+      "media_type": "tv",
+      "title": "Silo",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 403294,
+      "media_type": "tv",
+      "title": "The Bear",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 403342,
+      "media_type": "tv",
+      "title": "S.O.Z: Soldiers or Zombies",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 404815,
+      "media_type": "tv",
+      "title": "How to Become a Tyrant",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 405449,
+      "media_type": "tv",
+      "title": "Dogs in Space",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 408709,
+      "media_type": "tv",
+      "title": "Florida Man",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 409559,
+      "media_type": "tv",
+      "title": "Guillermo del Toro's Cabinet of Curiosities",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 410611,
+      "media_type": "tv",
+      "title": "Freeridge",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 410984,
+      "media_type": "tv",
+      "title": "An Astrological Guide for Broken Hearts",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 410986,
+      "media_type": "tv",
+      "title": "Everything Calls for Salvation",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 412421,
+      "media_type": "tv",
+      "title": "History of the World, Part II",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 412874,
+      "media_type": "tv",
+      "title": "Selling the OC",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 413031,
+      "media_type": "tv",
+      "title": "Attack On Pearl Harbor: Minute By Minute",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 413773,
+      "media_type": "tv",
+      "title": "The Law According to Lidia Poët",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 414217,
+      "media_type": "tv",
+      "title": "Cunk on Earth",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 414543,
+      "media_type": "tv",
+      "title": "Reboot (2022)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 414643,
+      "media_type": "tv",
+      "title": "Murderville",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 416744,
+      "media_type": "tv",
+      "title": "Fallout",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 417478,
+      "media_type": "tv",
+      "title": "Alpha Males",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 419097,
+      "media_type": "tv",
+      "title": "The Playlist",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 419191,
+      "media_type": "tv",
+      "title": "Exploding Kittens",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 420600,
+      "media_type": "tv",
+      "title": "Star Wars: Skeleton Crew",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 420847,
+      "media_type": "tv",
+      "title": "Backrooms",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 421837,
+      "media_type": "tv",
+      "title": "The Lovers (2023)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 423618,
+      "media_type": "tv",
+      "title": "The Decameron",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 425144,
+      "media_type": "tv",
+      "title": "28 Days Haunted",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 425393,
+      "media_type": "tv",
+      "title": "History: The Interesting Bits",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 425453,
+      "media_type": "tv",
+      "title": "Time Bandits",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 425656,
+      "media_type": "tv",
+      "title": "My Encounter with Evil",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 426845,
+      "media_type": "tv",
+      "title": "The Gentlemen",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 427195,
+      "media_type": "tv",
+      "title": "I Hate Christmas",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 428322,
+      "media_type": "tv",
+      "title": "Call My Agent - Italia",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 429230,
+      "media_type": "tv",
+      "title": "Gunther's Millions",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 430995,
+      "media_type": "tv",
+      "title": "Killer Coaster",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 431139,
+      "media_type": "tv",
+      "title": "MH370: The Plane That Disappeared",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 433003,
+      "media_type": "tv",
+      "title": "King of Collectibles: The Goldin Touch",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 435072,
+      "media_type": "tv",
+      "title": "Small Fish",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 435662,
+      "media_type": "tv",
+      "title": "Deli Boys",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 436695,
+      "media_type": "tv",
+      "title": "The Bondsman",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 436744,
+      "media_type": "tv",
+      "title": "How to Become a Cult Leader",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 437692,
+      "media_type": "tv",
+      "title": "Gentlemen",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Want to Watch",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 437929,
+      "media_type": "tv",
+      "title": "The Completely Made-Up Adventures of Dick Turpin",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 438818,
+      "media_type": "tv",
+      "title": "Living for the Dead",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 440193,
+      "media_type": "tv",
+      "title": "Devil May Cry (2025)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 441590,
+      "media_type": "tv",
+      "title": "En Fin",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 443261,
+      "media_type": "tv",
+      "title": "Too Much",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 443396,
+      "media_type": "tv",
+      "title": "Murderbot",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 445646,
+      "media_type": "tv",
+      "title": "A Man on the Inside",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 445651,
+      "media_type": "tv",
+      "title": "Margo's Got Money Troubles",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 447413,
+      "media_type": "tv",
+      "title": "Files of the Unexplained",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 447569,
+      "media_type": "tv",
+      "title": "North of North",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 448147,
+      "media_type": "tv",
+      "title": "The Studio (2025)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 448549,
+      "media_type": "tv",
+      "title": "Star Wars: Tales of the Empire",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 449146,
+      "media_type": "tv",
+      "title": "Star City",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 449872,
+      "media_type": "tv",
+      "title": "The Paper (2025)",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 450626,
+      "media_type": "tv",
+      "title": "Real Men",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 452277,
+      "media_type": "tv",
+      "title": "Something Very Bad Is Going to Happen",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 452467,
+      "media_type": "tv",
+      "title": "Adolescence",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 453280,
+      "media_type": "tv",
+      "title": "Secret Level",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 454109,
+      "media_type": "tv",
+      "title": "Widow's Bay",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 455129,
+      "media_type": "tv",
+      "title": "Whiskey on the Rocks",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 455526,
+      "media_type": "tv",
+      "title": "Love is Blind: Italy",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 457999,
+      "media_type": "tv",
+      "title": "Hitler's Secret Missions",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 458912,
+      "media_type": "tv",
+      "title": "Alien: Earth",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 468524,
+      "media_type": "tv",
+      "title": "True Haunting",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 470108,
+      "media_type": "tv",
+      "title": "My 2 Cents",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 473613,
+      "media_type": "tv",
+      "title": "The Dinosaurs",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    },
+    {
+      "media_id": 475659,
+      "media_type": "tv",
+      "title": "This Is a Gardening Show",
+      "poster_path": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=400&auto=format&fit=crop",
+      "status": "Currently Watching",
+      "user_rating": null,
+      "updated_at": "2026-07-10T08:00:00.000Z"
+    }
+  ],
+  "stats": {
+    "timeSpent": 216072,
+    "showsFollowedCount": 451
+  }
+}
