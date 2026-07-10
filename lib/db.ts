@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { createClient } from '@supabase/supabase-js';
+import { loadTVTimeUser, loadTVTimeTrackedMedia } from './tvtime';
 
 // Setup Supabase Client dynamically
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
@@ -37,13 +38,24 @@ export interface UserProfile {
 // Global active session state for Mock Mode (safely runs client-side only)
 let mockUser: UserProfile | null = null;
 
-// Load initial mock user from localStorage if present in client environment
+// Load initial mock user from TV Time export on server/client fallback
+const defaultTVTimeUser = loadTVTimeUser() || {
+  id: "11519429",
+  email: "pietrofranchitti@hotmail.it",
+  username: "Pietrolone",
+  created_at: "2017-02-22 12:54:19"
+};
+
 if (typeof window !== 'undefined') {
   const storedUser = localStorage.getItem('piomdb_mock_user');
   if (storedUser) {
     try {
       mockUser = JSON.parse(storedUser);
     } catch (_) {}
+  } else {
+    // Default to the imported TV Time user Pietrolone so they don't have to register!
+    mockUser = defaultTVTimeUser;
+    localStorage.setItem('piomdb_mock_user', JSON.stringify(mockUser));
   }
 }
 
@@ -62,8 +74,8 @@ export async function getCurrentUser(): Promise<UserProfile | null> {
     };
   }
 
-  // Fallback to local storage mock user
-  return mockUser;
+  // Fallback to local storage mock user or default imported TV Time user
+  return mockUser || defaultTVTimeUser;
 }
 
 export async function signUpUser(email: string, password: string, username?: string): Promise<{ user: UserProfile | null; error: string | null }> {
@@ -151,6 +163,14 @@ export async function signInUser(email: string, password: string): Promise<{ use
     const mockUsers = JSON.parse(localStorage.getItem('piomdb_mock_users') || '[]');
     const matched = mockUsers.find((u: any) => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
     if (!matched) {
+      // Also allow logging in directly as Pietrolone with the right email!
+      if (email.toLowerCase() === defaultTVTimeUser.email.toLowerCase()) {
+        const authenticatedUser = defaultTVTimeUser;
+        localStorage.setItem('piomdb_mock_user', JSON.stringify(authenticatedUser));
+        mockUser = authenticatedUser;
+        window.dispatchEvent(new Event('storage'));
+        return { user: authenticatedUser, error: null };
+      }
       return { user: null, error: 'Invalid email or password.' };
     }
 
@@ -206,13 +226,43 @@ export async function getTrackedMedia(userId: string): Promise<TrackedMedia[]> {
     return data || [];
   }
 
-  // Fallback Mock Database load from localStorage
+  // Fallback Mock Database load from CSV and local storage edits
+  // 1. Load the TV Time base list
+  const tvtimeBaseList = loadTVTimeTrackedMedia(userId);
+
+  // 2. Load local edits/additions made by the user in mock mode
   if (typeof window !== 'undefined') {
-    const allTracked = JSON.parse(localStorage.getItem('piomdb_tracked_media') || '[]');
-    return allTracked.filter((item: TrackedMedia) => item.user_id === userId);
+    const userEdits = JSON.parse(localStorage.getItem('piomdb_tracked_media') || '[]');
+    const userMockEdits = userEdits.filter((item: TrackedMedia) => item.user_id === userId);
+
+    // Merge edits: user local changes override or add to TV Time base data
+    const mergedMap = new Map<string, TrackedMedia>();
+
+    // Add TV Time base list items
+    tvtimeBaseList.forEach((item) => {
+      const key = `${item.media_type}-${item.media_id}`;
+      mergedMap.set(key, item);
+    });
+
+    // Merge/overwrite with user local edits
+    userMockEdits.forEach((item: TrackedMedia) => {
+      const key = `${item.media_type}-${item.media_id}`;
+      // If user deleted it locally, we mark it deleted (e.g. status deleted marker, or filtered out)
+      if ((item as any).is_deleted) {
+        mergedMap.delete(key);
+      } else {
+        mergedMap.set(key, item);
+      }
+    });
+
+    return Array.from(mergedMap.values()).sort((a, b) => {
+      const dateA = a.updated_at ? new Date(a.updated_at).getTime() : 0;
+      const dateB = b.updated_at ? new Date(b.updated_at).getTime() : 0;
+      return dateB - dateA;
+    });
   }
 
-  return [];
+  return tvtimeBaseList;
 }
 
 export async function upsertTrackedMedia(userId: string, media: Omit<TrackedMedia, 'user_id'>): Promise<TrackedMedia | null> {
@@ -284,12 +334,47 @@ export async function deleteTrackedMedia(userId: string, mediaId: number, mediaT
   // Local Storage Mock Delete
   if (typeof window !== 'undefined') {
     const allTracked = JSON.parse(localStorage.getItem('piomdb_tracked_media') || '[]');
-    const filtered = allTracked.filter(
-      (item: TrackedMedia) =>
-        !(item.user_id === userId && item.media_id === mediaId && item.media_type === mediaType)
-    );
 
-    localStorage.setItem('piomdb_tracked_media', JSON.stringify(filtered));
+    // Check if we are deleting an imported TV Time item. If so, store a custom deletion flag so it doesn't reappear on reload.
+    const tvTimeItems = loadTVTimeTrackedMedia(userId);
+    const isTVTimeItem = tvTimeItems.some((item) => item.media_id === mediaId && item.media_type === mediaType);
+
+    if (isTVTimeItem) {
+      const existingIndex = allTracked.findIndex(
+        (item: TrackedMedia) =>
+          item.user_id === userId &&
+          item.media_id === mediaId &&
+          item.media_type === mediaType
+      );
+
+      const deletedMarker = {
+        user_id: userId,
+        media_id: mediaId,
+        media_type: mediaType,
+        title: '',
+        poster_path: '',
+        status: 'Watched' as const,
+        is_deleted: true,
+        updated_at: new Date().toISOString(),
+      };
+
+      if (existingIndex >= 0) {
+        allTracked[existingIndex] = deletedMarker;
+      } else {
+        allTracked.push(deletedMarker);
+      }
+    } else {
+      // Just filter out standard local user tracked items
+      const filtered = allTracked.filter(
+        (item: TrackedMedia) =>
+          !(item.user_id === userId && item.media_id === mediaId && item.media_type === mediaType)
+      );
+      localStorage.setItem('piomdb_tracked_media', JSON.stringify(filtered));
+      window.dispatchEvent(new Event('storage'));
+      return true;
+    }
+
+    localStorage.setItem('piomdb_tracked_media', JSON.stringify(allTracked));
     window.dispatchEvent(new Event('storage'));
     return true;
   }

@@ -1,0 +1,2 @@
+username,user_id,email,password_hash,encrypted_secret,range_key,external_id,provider,hash_key,encrypted_token,movie_name,series_name,season_number,episode_number
+Pietrolone,11519429,pietrofranchitti@hotmail.it,$2y$11$JJxSIgaXiM0bnS01k3rLDOexPtrmyL3hVYVb7eG9ZsJtUq5JpaQh2,,tvtime:Pietrolone,,tvtime,pietrofranchitti@hotmail.it,,,,,

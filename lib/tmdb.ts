@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { loadTVTimeTrackedMedia } from "./tvtime";
+
 // Mock data representing TMDB results for movies and TV shows
 export interface TMDBMedia {
   id: number;
@@ -332,76 +333,119 @@ export async function searchMedia(query: string, type: "movie" | "tv" | "all" = 
 }
 
 export async function getMediaDetail(type: "movie" | "tv", id: string | number) {
-  try {
-    const data = await fetchFromTMDB(`/${type}/${id}`);
+  const matchedId = parseInt(id as string, 10);
+  const apiKey = process.env.TMDB_API_KEY;
 
-    const casts = data.credits?.cast?.slice(0, 10).map((c: any) => ({
-      id: c.id,
-      name: c.name,
-      character: c.character,
-      profile_path: c.profile_path ? `https://image.tmdb.org/t/p/w185${c.profile_path}` : null,
-    })) || [];
+  // Let's resolve the actual show's name if we have it in TV Time data
+  const tvtimeList = loadTVTimeTrackedMedia("11519429");
+  const tvtimeMatched = tvtimeList.find(item => item.media_id === matchedId && item.media_type === type);
 
-    const crews = data.credits?.crew?.filter((c: any) =>
-      c.job === "Director" || c.job === "Writer" || c.job === "Creator" || c.job === "Executive Producer"
-    ).slice(0, 5).map((c: any) => ({
-      id: c.id,
-      name: c.name,
-      job: c.job,
-      department: c.department
-    })) || [];
+  if (apiKey) {
+    try {
+      let activeId: string | number = id;
 
-    return {
-      id: data.id,
-      title: data.title || data.name || "",
-      media_type: type,
-      overview: data.overview || "",
-      poster_path: data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400&auto=format&fit=crop",
-      backdrop_path: data.backdrop_path ? `https://image.tmdb.org/t/p/w1280${data.backdrop_path}` : "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
-      release_date: data.release_date || data.first_air_date || "",
-      vote_average: data.vote_average || 0,
-      vote_count: data.vote_count || 0,
-      genres: data.genres || [],
-      runtime: data.runtime || (data.episode_run_time ? data.episode_run_time[0] : null),
-      number_of_seasons: data.number_of_seasons || null,
-      number_of_episodes: data.number_of_episodes || null,
-      status: data.status || "Unknown",
-      tagline: data.tagline || "",
-      credits: {
-        cast: casts,
-        crew: crews
+      // TV Time TVDB ID lookup on TMDB!
+      // If we don't have a direct TMDB ID but a TVDB show name, let's search TMDB by name!
+      if (type === "tv" && tvtimeMatched) {
+        const searchRes = await fetch(`${TMDB_API_URL}/search/tv?api_key=${apiKey}&query=${encodeURIComponent(tvtimeMatched.title)}`);
+        if (searchRes.ok) {
+          const searchJson = await searchRes.json();
+          if (searchJson.results && searchJson.results.length > 0) {
+            activeId = searchJson.results[0].id;
+          }
+        }
       }
-    };
-  } catch (error) {
-    console.error(`Error fetching detail from TMDB for ${type}/${id}:`, error);
-    // Search in mock data
-    const matchedId = parseInt(id as string, 10);
-    const found = ALL_MOCK_MEDIA.find(item => item.id === matchedId && item.media_type === type);
-    if (found) {
-      // Return found mock parsed cleanly
+
+      const data = await fetchFromTMDB(`/${type}/${activeId}`);
+
+      const casts = data.credits?.cast?.slice(0, 10).map((c: any) => ({
+        id: c.id,
+        name: c.name,
+        character: c.character,
+        profile_path: c.profile_path ? `https://image.tmdb.org/t/p/w185${c.profile_path}` : null,
+      })) || [];
+
+      const crews = data.credits?.crew?.filter((c: any) =>
+        c.job === "Director" || c.job === "Writer" || c.job === "Creator" || c.job === "Executive Producer"
+      ).slice(0, 5).map((c: any) => ({
+        id: c.id,
+        name: c.name,
+        job: c.job,
+        department: c.department
+      })) || [];
+
       return {
-        ...found,
-        title: found.title || found.name || "",
-        release_date: found.release_date || found.first_air_date || "",
-        credits: found.credits || { cast: [], crew: [] }
+        id: data.id,
+        title: data.title || data.name || "",
+        media_type: type,
+        overview: data.overview || "",
+        poster_path: data.poster_path ? `https://image.tmdb.org/t/p/w500${data.poster_path}` : "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400&auto=format&fit=crop",
+        backdrop_path: data.backdrop_path ? `https://image.tmdb.org/t/p/w1280${data.backdrop_path}` : "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
+        release_date: data.release_date || data.first_air_date || "",
+        vote_average: data.vote_average || 0,
+        vote_count: data.vote_count || 0,
+        genres: data.genres || [],
+        runtime: data.runtime || (data.episode_run_time ? data.episode_run_time[0] : null),
+        number_of_seasons: data.number_of_seasons || null,
+        number_of_episodes: data.number_of_episodes || null,
+        status: data.status || "Unknown",
+        tagline: data.tagline || "",
+        credits: {
+          cast: casts,
+          crew: crews
+        }
       };
+    } catch (err) {
+      console.error("TMDB real metadata lookup error, falling back to mocks:", err);
     }
-    // Return empty state or first mock
+  }
+
+  // Search in mock data or TV Time metadata
+  const found = ALL_MOCK_MEDIA.find(item => item.id === matchedId && item.media_type === type);
+  if (found) {
+    return {
+      ...found,
+      title: found.title || found.name || "",
+      release_date: found.release_date || found.first_air_date || "",
+      credits: found.credits || { cast: [], crew: [] }
+    };
+  }
+
+  // Fallback to TV Time mock item details
+  if (tvtimeMatched) {
     return {
       id: matchedId,
-      title: type === "movie" ? "Mock Movie Title" : "Mock TV Title",
-      media_type: type,
-      overview: "Could not fetch details. Running in offline/mock fallback mode.",
-      poster_path: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400&auto=format&fit=crop",
-      backdrop_path: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
-      release_date: "2025-01-01",
-      vote_average: 7.5,
-      vote_count: 100,
-      genres: [{ id: 1, name: "Drama" }],
-      runtime: 120,
+      title: tvtimeMatched.title,
+      media_type: "tv" as const,
+      overview: `Imported show from TV Time. Status: ${tvtimeMatched.status}. Configure your TMDB API Key in environment variables to load true posters, ratings, cast, and summaries dynamically.`,
+      poster_path: tvtimeMatched.poster_path,
+      backdrop_path: "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=1200&auto=format&fit=crop",
+      release_date: "2017-02-22",
+      vote_average: 8.5,
+      vote_count: 450,
+      genres: [{ id: 1, name: "Drama" }, { id: 2, name: "TV Time Import" }],
+      runtime: 45,
       status: "Released",
-      tagline: "This is a fallback tagline.",
+      tagline: "Your favorite TV Time series.",
       credits: { cast: [], crew: [] }
     };
   }
+
+  // Default empty state or first mock
+  return {
+    id: matchedId,
+    title: type === "movie" ? "Mock Movie Title" : "Mock TV Show",
+    media_type: type,
+    overview: "Could not fetch details. Running in offline/mock fallback mode.",
+    poster_path: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=400&auto=format&fit=crop",
+    backdrop_path: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1200&auto=format&fit=crop",
+    release_date: "2025-01-01",
+    vote_average: 7.5,
+    vote_count: 100,
+    genres: [{ id: 1, name: "Drama" }],
+    runtime: 120,
+    status: "Released",
+    tagline: "This is a fallback tagline.",
+    credits: { cast: [], crew: [] }
+  };
 }
