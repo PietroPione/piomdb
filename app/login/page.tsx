@@ -1,0 +1,186 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getCurrentUser, signUpUser, signInUser } from "@/lib/db";
+import { Film, Mail, Lock, User, Sparkles, Check } from "lucide-react";
+
+export default function Login() {
+  const router = useRouter();
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    // If user already logged in, push to Dashboard/Profile page
+    async function checkUser() {
+      const u = await getCurrentUser();
+      if (u) router.push("/profile");
+    }
+    checkUser();
+  }, [router]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
+
+    try {
+      if (isSignUp) {
+        const { user: newUser, error: signUpErr } = await signUpUser(email, password, username);
+        if (signUpErr) {
+          setError(signUpErr);
+        } else {
+          setSuccess(true);
+          setTimeout(() => {
+            router.push("/profile");
+          }, 1500);
+        }
+      } else {
+        const { user: existingUser, error: signInErr } = await signInUser(email, password);
+        if (signInErr) {
+          setError(signInErr);
+        } else {
+          router.push("/profile");
+        }
+      }
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="flex-1 flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-zinc-50 dark:bg-black/40">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        {/* Brand Header */}
+        <div className="flex justify-center">
+          <div className="h-12 w-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <Film className="h-6 w-6 text-white" />
+          </div>
+        </div>
+        <h2 className="mt-6 text-center text-3xl font-black tracking-tight text-zinc-900 dark:text-zinc-50">
+          {isSignUp ? "Create your account" : "Welcome back"}
+        </h2>
+        <p className="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-400 font-medium">
+          Or{" "}
+          <button
+            onClick={() => {
+              setIsSignUp(!isSignUp);
+              setError(null);
+            }}
+            className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            {isSignUp ? "sign in to your existing account" : "register a new account"}
+          </button>
+        </p>
+      </div>
+
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white dark:bg-zinc-900 py-8 px-4 shadow-sm sm:rounded-3xl sm:px-10 border border-zinc-200/60 dark:border-zinc-800">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="rounded-xl bg-red-50 dark:bg-red-950/20 p-4 border border-red-200/50 dark:border-red-900/30">
+                <p className="text-xs font-bold text-red-600 dark:text-red-400">{error}</p>
+              </div>
+            )}
+
+            {success && (
+              <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/20 p-4 border border-emerald-200/50 dark:border-emerald-900/30 flex items-center gap-2">
+                <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                  Account registered successfully! Redirecting...
+                </p>
+              </div>
+            )}
+
+            {isSignUp && (
+              <div>
+                <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                  Username
+                </label>
+                <div className="relative rounded-md shadow-sm">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <User className="h-4 w-4 text-zinc-400" />
+                  </div>
+                  <input
+                    type="text"
+                    required
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="e.g. user123"
+                    className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm"
+                  />
+                </div>
+              </div>
+            )}
+
+            <div>
+              <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                Email Address
+              </label>
+              <div className="relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail className="h-4 w-4 text-zinc-400" />
+                </div>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="e.g. name@example.com"
+                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                Password
+              </label>
+              <div className="relative rounded-md shadow-sm">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-4 w-4 text-zinc-400" />
+                </div>
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
+                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm"
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all disabled:opacity-50"
+              >
+                {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Sign In"}
+              </button>
+            </div>
+          </form>
+
+          {/* Fallback Notice */}
+          <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-800 text-center">
+            <span className="inline-flex items-center gap-1.5 text-xxs font-semibold bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 px-3 py-1.5 rounded-full border border-indigo-100/30 dark:border-indigo-900/20">
+              <Sparkles className="h-3 w-3" />
+              Connected with active Local-Fallback database
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
