@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, Star, Play, Clock, TrendingUp, Sparkles } from "lucide-react";
@@ -17,6 +17,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [mediaType, setMediaType] = useState<"all" | "movie" | "tv">("all");
   const [isPending, startTransition] = useTransition();
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   // Hidden/Private mock activity feed for friends
   const [showFriendsActivity] = useState(false); // Flag configured as false to keep section hidden as requested
@@ -83,6 +84,13 @@ export default function Home() {
     });
   };
 
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.currentTarget.blur(); // dismiss the mobile keyboard
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="flex-1 flex flex-col">
       {/* Compact Hero: search is the primary action here, not a marketing banner */}
@@ -109,8 +117,11 @@ export default function Home() {
               </div>
               <input
                 type="text"
+                inputMode="search"
+                enterKeyHint="search"
                 value={query}
                 onChange={(e) => handleSearch(e.target.value)}
+                onKeyDown={handleSearchKeyDown}
                 placeholder={t("discover.searchPlaceholder")}
                 className="block w-full pl-12 pr-4 py-4 rounded-2xl bg-white text-zinc-900 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-500/40 shadow-lg text-base"
               />
@@ -181,7 +192,7 @@ export default function Home() {
       )}
 
       {/* Results: search results when there's a query, trending otherwise */}
-      <section className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-12 flex-1">
+      <section ref={resultsRef} className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-12 flex-1">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />

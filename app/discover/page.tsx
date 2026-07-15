@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Search, Film, SlidersHorizontal, Star } from "lucide-react";
@@ -13,6 +13,7 @@ export default function Discover() {
   const [results, setResults] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const formatYear = (value?: string) => {
     if (!value) return "";
@@ -59,6 +60,13 @@ export default function Discover() {
     });
   };
 
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.currentTarget.blur(); // dismiss the mobile keyboard
+      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 flex-1 flex flex-col">
       {/* Header section */}
@@ -97,8 +105,11 @@ export default function Discover() {
         </div>
         <input
           type="text"
+          inputMode="search"
+          enterKeyHint="search"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
+          onKeyDown={handleSearchKeyDown}
           placeholder={t("discover.searchPlaceholder")}
           className="block w-full pl-12 pr-4 py-4 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 shadow-sm transition-all text-base"
         />
@@ -110,7 +121,7 @@ export default function Discover() {
       </div>
 
       {/* Filters indicator / Header */}
-      <div className="flex items-center gap-2 mb-6">
+      <div ref={resultsRef} className="flex items-center gap-2 mb-6">
         <SlidersHorizontal className="h-4 w-4 text-zinc-400" />
         <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
           {query ? t("discover.searchResultsFor", { query }) : t("discover.trendingThisWeek")}
