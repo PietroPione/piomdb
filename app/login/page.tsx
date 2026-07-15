@@ -4,8 +4,9 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getCurrentUser, signUpUser, signInUser } from "@/lib/db";
+import { getCurrentUser, signUpUser, signInUser, isSupabaseConfigured } from "@/lib/db";
 import { Film, Mail, Lock, User, Sparkles, Check } from "lucide-react";
+import { t } from "@/lib/i18n";
 
 export default function Login() {
   const router = useRouter();
@@ -63,23 +64,23 @@ export default function Login() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Brand Header */}
         <div className="flex justify-center">
-          <div className="h-12 w-12 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
+          <div className="h-12 w-12 bg-yellow-600 rounded-2xl flex items-center justify-center shadow-lg shadow-yellow-500/20">
             <Film className="h-6 w-6 text-white" />
           </div>
         </div>
         <h2 className="mt-6 text-center text-3xl font-black tracking-tight text-zinc-900 dark:text-zinc-50">
-          {isSignUp ? "Create your account" : "Welcome back"}
+          {isSignUp ? t("login.createAccount") : t("login.welcomeBack")}
         </h2>
         <p className="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-400 font-medium">
-          Or{" "}
+          {t("login.or")}{" "}
           <button
             onClick={() => {
               setIsSignUp(!isSignUp);
               setError(null);
             }}
-            className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
+            className="font-bold text-yellow-600 dark:text-yellow-400 hover:underline"
           >
-            {isSignUp ? "sign in to your existing account" : "register a new account"}
+            {isSignUp ? t("login.signInExisting") : t("login.registerNew")}
           </button>
         </p>
       </div>
@@ -97,7 +98,7 @@ export default function Login() {
               <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/20 p-4 border border-emerald-200/50 dark:border-emerald-900/30 flex items-center gap-2">
                 <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 <p className="text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                  Account registered successfully! Redirecting...
+                  {t("login.registeredSuccess")}
                 </p>
               </div>
             )}
@@ -105,7 +106,7 @@ export default function Login() {
             {isSignUp && (
               <div>
                 <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
-                  Username
+                  {t("login.username")}
                 </label>
                 <div className="relative rounded-md shadow-sm">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -116,8 +117,8 @@ export default function Login() {
                     required
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    placeholder="e.g. user123"
-                    className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm"
+                    placeholder={t("login.usernamePlaceholder")}
+                    className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm"
                   />
                 </div>
               </div>
@@ -125,7 +126,7 @@ export default function Login() {
 
             <div>
               <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
-                Email Address
+                {t("login.email")}
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -136,15 +137,15 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. name@example.com"
-                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm"
+                  placeholder={t("login.emailPlaceholder")}
+                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm"
                 />
               </div>
             </div>
 
             <div>
               <label className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
-                Password
+                {t("login.password")}
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -156,7 +157,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-sm"
+                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm"
                 />
               </div>
             </div>
@@ -165,18 +166,18 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-bold text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all disabled:opacity-50"
+                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-bold text-white bg-yellow-600 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-all disabled:opacity-50"
               >
-                {loading ? "Please wait..." : isSignUp ? "Sign Up" : "Sign In"}
+                {loading ? t("login.pleaseWait") : isSignUp ? t("login.signUp") : t("login.signIn")}
               </button>
             </div>
           </form>
 
           {/* Fallback Notice */}
           <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-800 text-center">
-            <span className="inline-flex items-center gap-1.5 text-xxs font-semibold bg-indigo-50 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 px-3 py-1.5 rounded-full border border-indigo-100/30 dark:border-indigo-900/20">
+            <span className="inline-flex items-center gap-1.5 text-xxs font-semibold bg-yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-400 px-3 py-1.5 rounded-full border border-yellow-100/30 dark:border-yellow-900/20">
               <Sparkles className="h-3 w-3" />
-              Connected with active Local-Fallback database
+              {isSupabaseConfigured ? t("login.connectedSupabase") : t("login.connectedLocalFallback")}
             </span>
           </div>
         </div>

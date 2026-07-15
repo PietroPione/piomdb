@@ -5,7 +5,11 @@ import { loadTVTimeUser, loadTVTimeTrackedMedia } from './tvtime';
 
 // Setup Supabase Client dynamically
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+// Supabase renamed the legacy "anon key" to "publishable key"; accept either.
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  '';
 
 // Check if we have valid Supabase keys to use
 export const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey);
@@ -18,12 +22,14 @@ export const supabase = isSupabaseConfigured
 export interface TrackedMedia {
   id?: string;
   user_id?: string;
-  media_id: number;
+  media_id: string;
   media_type: 'movie' | 'tv';
   title: string;
   poster_path: string;
-  status: 'Watched' | 'Want to Watch' | 'Currently Watching' | 'On Hold' | 'Favorites';
+  status: 'Watched' | 'Want to Watch' | 'Currently Watching' | 'On Hold';
+  is_favorite?: boolean;
   user_rating?: number; // User rating out of 10
+  total_episodes?: number | null; // TV only — lets a DB trigger auto-flip status to Watched
   updated_at?: string;
 }
 
@@ -208,6 +214,183 @@ export async function signOutUser(): Promise<void> {
 
 
 /**
+ * EPISODE TRACKING LAYER
+ */
+
+export interface WatchedEpisode {
+  user_id: string;
+  media_id: string;
+  season: number;
+  episode: number;
+  updated_at?: string;
+}
+
+const WATCHED_EPISODES_KEY = 'piomdb_watched_episodes';
+
+function readWatchedEpisodes(): WatchedEpisode[] {
+  if (typeof window === 'undefined') return [];
+  return JSON.parse(localStorage.getItem(WATCHED_EPISODES_KEY) || '[]');
+}
+
+function writeWatchedEpisodes(entries: WatchedEpisode[]): void {
+  localStorage.setItem(WATCHED_EPISODES_KEY, JSON.stringify(entries));
+  window.dispatchEvent(new Event('storage'));
+}
+
+export async function getWatchedEpisodes(userId: string, mediaId: string): Promise<WatchedEpisode[]> {
+  if (isSupabaseConfigured && supabase) {
+    const { data, error } = await supabase
+      .from('watched_episodes')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('media_id', mediaId);
+
+    if (error) {
+      console.error('Error fetching watched episodes from Supabase:', error);
+      return [];
+    }
+    return data || [];
+  }
+
+  return readWatchedEpisodes().filter((e) => e.user_id === userId && e.media_id === mediaId);
+}
+
+export async function setEpisodeWatched(
+  userId: string,
+  mediaId: string,
+  season: number,
+  episode: number,
+  watched: boolean
+): Promise<void> {
+  if (isSupabaseConfigured && supabase) {
+    if (watched) {
+      const { error } = await supabase
+        .from('watched_episodes')
+        .upsert(
+          { user_id: userId, media_id: mediaId, season, episode, updated_at: new Date().toISOString() },
+          { onConflict: 'user_id,media_id,season,episode' }
+        );
+      if (error) console.error('Error upserting watched episode to Supabase:', error);
+    } else {
+      const { error } = await supabase
+        .from('watched_episodes')
+        .delete()
+        .eq('user_id', userId)
+        .eq('media_id', mediaId)
+        .eq('season', season)
+        .eq('episode', episode);
+      if (error) console.error('Error deleting watched episode from Supabase:', error);
+    }
+    return;
+  }
+
+  if (typeof window === 'undefined') return;
+  const all = readWatchedEpisodes();
+  const idx = all.findIndex(
+    (e) => e.user_id === userId && e.media_id === mediaId && e.season === season && e.episode === episode
+  );
+
+  if (watched) {
+    const entry: WatchedEpisode = { user_id: userId, media_id: mediaId, season, episode, updated_at: new Date().toISOString() };
+    if (idx >= 0) all[idx] = entry;
+    else all.push(entry);
+  } else if (idx >= 0) {
+    all.splice(idx, 1);
+  }
+
+  writeWatchedEpisodes(all);
+}
+
+export async function setSeasonWatched(
+  userId: string,
+  mediaId: string,
+  season: number,
+  episodeNumbers: number[],
+  watched: boolean
+): Promise<void> {
+  if (isSupabaseConfigured && supabase) {
+    if (watched) {
+      const now = new Date().toISOString();
+      const rows = episodeNumbers.map((episode) => ({ user_id: userId, media_id: mediaId, season, episode, updated_at: now }));
+      const { error } = await supabase.from('watched_episodes').upsert(rows, { onConflict: 'user_id,media_id,season,episode' });
+      if (error) console.error('Error upserting season to Supabase:', error);
+    } else {
+      const { error } = await supabase
+        .from('watched_episodes')
+        .delete()
+        .eq('user_id', userId)
+        .eq('media_id', mediaId)
+        .eq('season', season);
+      if (error) console.error('Error deleting season from Supabase:', error);
+    }
+    return;
+  }
+
+  if (typeof window === 'undefined') return;
+  const remaining = readWatchedEpisodes().filter(
+    (e) => !(e.user_id === userId && e.media_id === mediaId && e.season === season)
+  );
+
+  if (watched) {
+    const now = new Date().toISOString();
+    for (const episode of episodeNumbers) {
+      remaining.push({ user_id: userId, media_id: mediaId, season, episode, updated_at: now });
+    }
+  }
+
+  writeWatchedEpisodes(remaining);
+}
+
+/** Bulk-write watched episodes (e.g. from a CSV import) in a single write. */
+export async function bulkImportWatchedEpisodes(
+  userId: string,
+  entries: { mediaId: string; season: number; episode: number }[]
+): Promise<void> {
+  if (entries.length === 0) return;
+
+  if (isSupabaseConfigured && supabase) {
+    const now = new Date().toISOString();
+    const rows = entries.map((e) => ({ user_id: userId, media_id: e.mediaId, season: e.season, episode: e.episode, updated_at: now }));
+    const { error } = await supabase.from('watched_episodes').upsert(rows, { onConflict: 'user_id,media_id,season,episode' });
+    if (error) {
+      console.error('Error bulk-importing watched episodes to Supabase:', error);
+      throw error;
+    }
+    return;
+  }
+
+  if (typeof window === 'undefined') return;
+  const existing = readWatchedEpisodes();
+  const existingKeys = new Set(existing.map((e) => `${e.user_id}-${e.media_id}-${e.season}-${e.episode}`));
+  const now = new Date().toISOString();
+
+  for (const entry of entries) {
+    const key = `${userId}-${entry.mediaId}-${entry.season}-${entry.episode}`;
+    if (!existingKeys.has(key)) {
+      existing.push({ user_id: userId, media_id: entry.mediaId, season: entry.season, episode: entry.episode, updated_at: now });
+      existingKeys.add(key);
+    }
+  }
+
+  writeWatchedEpisodes(existing);
+}
+
+/** Deletes all watched-episode rows for a given media item (e.g. cleaning up a stale id after re-resolution). */
+export async function deleteWatchedEpisodesForMedia(userId: string, mediaId: string): Promise<void> {
+  if (isSupabaseConfigured && supabase) {
+    const { error } = await supabase.from('watched_episodes').delete().eq('user_id', userId).eq('media_id', mediaId);
+    if (error) {
+      console.error('Error deleting stale watched episodes from Supabase:', error);
+      throw error;
+    }
+    return;
+  }
+
+  if (typeof window === 'undefined') return;
+  writeWatchedEpisodes(readWatchedEpisodes().filter((e) => !(e.user_id === userId && e.media_id === mediaId)));
+}
+
+/**
  * DATABASE / MEDIA TRACKING LAYER
  */
 
@@ -315,7 +498,47 @@ export async function upsertTrackedMedia(userId: string, media: Omit<TrackedMedi
   return null;
 }
 
-export async function deleteTrackedMedia(userId: string, mediaId: number, mediaType: 'movie' | 'tv'): Promise<boolean> {
+/** Bulk-upsert tracked media (e.g. from a CSV import) in a single write. */
+export async function bulkImportTrackedMedia(
+  userId: string,
+  items: Omit<TrackedMedia, 'user_id'>[]
+): Promise<void> {
+  if (items.length === 0) return;
+
+  if (isSupabaseConfigured && supabase) {
+    const now = new Date().toISOString();
+    const rows = items.map((item) => ({ ...item, user_id: userId, updated_at: now }));
+    const { error } = await supabase.from('tracked_media').upsert(rows, { onConflict: 'user_id,media_id,media_type' });
+    if (error) {
+      console.error('Error bulk-importing tracked media to Supabase:', error);
+      throw error;
+    }
+    return;
+  }
+
+  if (typeof window === 'undefined') return;
+  const allTracked: TrackedMedia[] = JSON.parse(localStorage.getItem('piomdb_tracked_media') || '[]');
+  const now = new Date().toISOString();
+
+  for (const item of items) {
+    const existingIndex = allTracked.findIndex(
+      (t) => t.user_id === userId && t.media_id === item.media_id && t.media_type === item.media_type
+    );
+    const updatedItem: TrackedMedia = {
+      ...item,
+      user_id: userId,
+      updated_at: now,
+      id: existingIndex >= 0 ? allTracked[existingIndex].id : `trk_${Math.random().toString(36).substr(2, 9)}`,
+    };
+    if (existingIndex >= 0) allTracked[existingIndex] = updatedItem;
+    else allTracked.push(updatedItem);
+  }
+
+  localStorage.setItem('piomdb_tracked_media', JSON.stringify(allTracked));
+  window.dispatchEvent(new Event('storage'));
+}
+
+export async function deleteTrackedMedia(userId: string, mediaId: string, mediaType: 'movie' | 'tv'): Promise<boolean> {
   if (isSupabaseConfigured && supabase) {
     const { error } = await supabase
       .from('tracked_media')

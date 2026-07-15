@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getCurrentUser, getTrackedMedia, TrackedMedia, UserProfile } from "@/lib/db";
 import { Star, Clock, LayoutGrid, Award } from "lucide-react";
+import TvTimeImporter from "@/components/TvTimeImporter";
+import { t } from "@/lib/i18n";
 
 export default function Profile() {
   const [user, setUser] = useState<UserProfile | null>(null);
@@ -35,7 +37,7 @@ export default function Profile() {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center py-20">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-indigo-600 border-t-transparent" />
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-yellow-600 border-t-transparent" />
       </div>
     );
   }
@@ -44,12 +46,12 @@ export default function Profile() {
     return (
       <div className="max-w-md mx-auto my-20 px-6 text-center">
         <div className="h-12 w-12 text-zinc-300 mx-auto mb-4" />
-        <h2 className="text-xl font-bold">No Profile Found</h2>
+        <h2 className="text-xl font-bold">{t("profile.noProfileTitle")}</h2>
         <p className="text-sm text-zinc-500 mt-2">
-          Please sign in to view your profile dashboard and tracking statistics.
+          {t("profile.noProfileBody")}
         </p>
-        <Link href="/login" className="inline-block mt-4 text-indigo-600 font-semibold hover:underline text-sm">
-          Sign In Now
+        <Link href="/login" className="inline-block mt-4 text-yellow-600 font-semibold hover:underline text-sm">
+          {t("profile.signInNow")}
         </Link>
       </div>
     );
@@ -73,7 +75,7 @@ export default function Profile() {
 
         <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
           {/* Avatar avatar */}
-          <div className="h-20 w-20 rounded-2xl bg-indigo-600 flex items-center justify-center font-black text-3xl uppercase tracking-wider text-white shadow-lg shadow-indigo-500/20">
+          <div className="h-20 w-20 rounded-2xl bg-yellow-600 flex items-center justify-center font-black text-3xl uppercase tracking-wider text-white shadow-lg shadow-yellow-500/20">
             {user.username ? user.username[0] : user.email[0]}
           </div>
 
@@ -86,12 +88,14 @@ export default function Profile() {
             </p>
             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2">
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xxs font-bold uppercase tracking-wider bg-zinc-800 text-zinc-300 border border-zinc-700">
-                <Clock className="h-3.5 w-3.5 text-indigo-400" />
-                Joined {user.created_at ? new Date(user.created_at).toLocaleDateString() : "Recently"}
+                <Clock className="h-3.5 w-3.5 text-yellow-400" />
+                {user.created_at
+                  ? t("profile.joined", { date: new Date(user.created_at).toLocaleDateString("it-IT") })
+                  : t("profile.joinedRecently")}
               </span>
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xxs font-bold uppercase tracking-wider bg-zinc-800 text-zinc-300 border border-zinc-700">
-                <Award className="h-3.5 w-3.5 text-indigo-400" />
-                Track Master
+                <Award className="h-3.5 w-3.5 text-yellow-400" />
+                {t("profile.trackMaster")}
               </span>
             </div>
           </div>
@@ -101,29 +105,29 @@ export default function Profile() {
       {/* Grid Statistics Shelf */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-indigo-600 dark:text-indigo-400">
+          <span className="block text-3xl font-black text-yellow-600 dark:text-yellow-400">
             {totalWatched}
           </span>
           <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            Watched
+            {t("profile.statWatched")}
           </span>
         </div>
 
         <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-indigo-600 dark:text-indigo-400">
+          <span className="block text-3xl font-black text-yellow-600 dark:text-yellow-400">
             {currentlyWatching}
           </span>
           <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            Watching
+            {t("profile.statWatching")}
           </span>
         </div>
 
         <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-indigo-600 dark:text-indigo-400">
+          <span className="block text-3xl font-black text-yellow-600 dark:text-yellow-400">
             {watchlistCount}
           </span>
           <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            Watchlist
+            {t("profile.statWatchlist")}
           </span>
         </div>
 
@@ -132,7 +136,7 @@ export default function Profile() {
             {averageRating}
           </span>
           <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            Avg Rating
+            {t("profile.statAvgRating")}
           </span>
         </div>
       </section>
@@ -140,15 +144,15 @@ export default function Profile() {
       {/* Recent Activity Grid */}
       <section className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
         <h2 className="text-lg font-black tracking-tight text-zinc-800 dark:text-zinc-200 mb-6 flex items-center gap-2">
-          <LayoutGrid className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-          Recently Tracked Activity
+          <LayoutGrid className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+          {t("profile.recentActivity")}
         </h2>
 
         {tracked.length === 0 ? (
           <div className="text-center py-10">
-            <p className="text-sm text-zinc-500 font-medium">No activity tracked yet.</p>
-            <Link href="/discover" className="inline-block mt-3 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
-              Search & Add titles &rarr;
+            <p className="text-sm text-zinc-500 font-medium">{t("profile.noActivity")}</p>
+            <Link href="/discover" className="inline-block mt-3 text-xs font-bold text-yellow-600 dark:text-yellow-400 hover:underline">
+              {t("profile.searchAddTitles")}
             </Link>
           </div>
         ) : (
@@ -168,12 +172,12 @@ export default function Profile() {
                   <div>
                     <Link
                       href={`/media/${item.media_type}/${item.media_id}`}
-                      className="font-bold text-sm text-zinc-900 dark:text-zinc-100 hover:text-indigo-600 transition-colors line-clamp-1"
+                      className="font-bold text-sm text-zinc-900 dark:text-zinc-100 hover:text-yellow-600 transition-colors line-clamp-1"
                     >
                       {item.title}
                     </Link>
                     <span className="block text-xxs text-zinc-400 font-semibold uppercase tracking-wider mt-0.5">
-                      {item.media_type} &bull; {item.status}
+                      {t(`mediaType.${item.media_type}`)} &bull; {t(`status.${item.status}`)}
                     </span>
                   </div>
                 </div>
@@ -185,7 +189,7 @@ export default function Profile() {
                       {item.user_rating}
                     </span>
                   ) : (
-                    <span className="text-xxs text-zinc-400 font-bold uppercase tracking-wider">Unrated</span>
+                    <span className="text-xxs text-zinc-400 font-bold uppercase tracking-wider">{t("profile.unrated")}</span>
                   )}
                 </div>
               </div>
@@ -193,6 +197,10 @@ export default function Profile() {
           </div>
         )}
       </section>
+
+      <div className="mt-8">
+        <TvTimeImporter />
+      </div>
     </div>
   );
 }
