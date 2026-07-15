@@ -1,0 +1,7 @@
+[build.environment]
+  # NEXT_PUBLIC_* vars are inlined into the client bundle by design (that's what the
+  # prefix means) — Netlify's secret scanner flags them as leaked secrets, but they're
+  # meant to be public. Safety here comes from Supabase RLS policies, not from hiding
+  # this key. Everything else (OMDB_API_KEY, TMDB_API_KEY, TMDB_READ_ACCESS_TOKEN) is
+  # still scanned normally.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"
