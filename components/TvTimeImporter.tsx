@@ -18,6 +18,7 @@ import { UploadCloud, Loader2, CheckCircle2, AlertCircle, FileText, FileArchive 
 import { cachedFetch } from "@/lib/apiCache";
 import { t } from "@/lib/i18n";
 import { TMDB_RATE_PER_SECOND } from "@/lib/rateLimit";
+import { resolveWithConcurrency } from "@/lib/concurrency";
 
 // The server-side rate limiter (shared across all requests) is the real
 // bottleneck, so the client can queue many more requests than that at once —
@@ -104,24 +105,6 @@ function formatEta(seconds: number): string {
   return `${minutes}m ${rest}s`;
 }
 
-async function resolveWithConcurrency<T, R>(
-  items: T[],
-  limit: number,
-  fn: (item: T) => Promise<R>
-): Promise<R[]> {
-  const results: R[] = new Array(items.length);
-  let cursor = 0;
-
-  async function worker() {
-    while (cursor < items.length) {
-      const i = cursor++;
-      results[i] = await fn(items[i]);
-    }
-  }
-
-  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, () => worker()));
-  return results;
-}
 
 interface ImportSummary {
   showsImported: number;
@@ -299,7 +282,23 @@ export default function TvTimeImporter() {
           }
         }
 
-        return { ...idPoster, totalEpisodes };
+        // Sampled once here (S1E1) so the profile stats page can total minutes straight
+        // from the DB afterwards instead of calling TMDB itself on every load.
+        let avgEpisodeRuntime = cached?.avg_episode_runtime ?? null;
+        if (!avgEpisodeRuntime) {
+          try {
+            const season1 = await cachedFetch(`season-tv-${idPoster.id}-1`, async () => {
+              const res = await fetch(`/api/tmdb/season?type=tv&id=${idPoster!.id}&season=1`);
+              return res.json();
+            });
+            const episodes = (season1?.episodes || []) as { runtime: number | null }[];
+            avgEpisodeRuntime = episodes.find((ep) => typeof ep.runtime === "number" && ep.runtime > 0)?.runtime ?? null;
+          } catch {
+            avgEpisodeRuntime = null;
+          }
+        }
+
+        return { ...idPoster, totalEpisodes, avgEpisodeRuntime };
       });
 
       // Different TV Time shows can resolve to the same OMDb title (e.g. regional
@@ -326,6 +325,7 @@ export default function TvTimeImporter() {
 
         const watchedSet = watchedByShow.get(show.title);
         const totalEpisodes = resolved?.totalEpisodes ?? null;
+        const avgEpisodeRuntime = resolved?.avgEpisodeRuntime ?? null;
 
         // Prefer the actual imported episode completion over TV Time's own
         // is_followed/nb_episodes_seen fields, which don't reflect it (a "followed"
@@ -344,6 +344,7 @@ export default function TvTimeImporter() {
           is_favorite: show.isFavorited,
           user_rating: show.isFavorited ? 10 : undefined,
           total_episodes: totalEpisodes,
+          avg_episode_runtime: avgEpisodeRuntime,
         });
 
         if (watchedSet) {
@@ -420,22 +421,33 @@ export default function TvTimeImporter() {
           });
           const total: number | null = detail?.number_of_episodes ?? null;
 
-          if (total && total !== show.total_episodes) {
+          // Backfills shows tracked before avg_episode_runtime existed, so the profile
+          // stats page can read it straight from the DB without ever calling TMDB itself.
+          let avgEpisodeRuntime = show.avg_episode_runtime ?? null;
+          if (!avgEpisodeRuntime) {
+            const season1 = await cachedFetch(`season-tv-${show.media_id}-1`, async () => {
+              const res = await fetch(`/api/tmdb/season?type=tv&id=${show.media_id}&season=1`);
+              return res.json();
+            });
+            const episodes = (season1?.episodes || []) as { runtime: number | null }[];
+            avgEpisodeRuntime = episodes.find((ep) => typeof ep.runtime === "number" && ep.runtime > 0)?.runtime ?? null;
+          }
+
+          if ((total && total !== show.total_episodes) || (avgEpisodeRuntime && avgEpisodeRuntime !== show.avg_episode_runtime)) {
             const watched = await getWatchedEpisodes(user.id, show.media_id);
-            const nowWatched = watched.length >= total;
-            if (nowWatched || total !== show.total_episodes) {
-              await upsertTrackedMedia(user.id, {
-                media_id: show.media_id,
-                media_type: "tv",
-                title: show.title,
-                poster_path: show.poster_path,
-                status: nowWatched ? "Watched" : show.status,
-                user_rating: show.user_rating,
-                is_favorite: show.is_favorite,
-                total_episodes: total,
-              });
-              if (nowWatched && show.status !== "Watched") fixed++;
-            }
+            const nowWatched = !!total && watched.length >= total;
+            await upsertTrackedMedia(user.id, {
+              media_id: show.media_id,
+              media_type: "tv",
+              title: show.title,
+              poster_path: show.poster_path,
+              status: nowWatched ? "Watched" : show.status,
+              user_rating: show.user_rating,
+              is_favorite: show.is_favorite,
+              total_episodes: total,
+              avg_episode_runtime: avgEpisodeRuntime,
+            });
+            if (nowWatched && show.status !== "Watched") fixed++;
           }
         } catch (err) {
           console.error(`Failed reconciling ${show.title}:`, err);

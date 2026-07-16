@@ -3,17 +3,137 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { getCurrentUser, getTrackedMedia, TrackedMedia, UserProfile } from "@/lib/db";
-import { Star, Clock, LayoutGrid, Award } from "lucide-react";
+import {
+  getCurrentUser,
+  getTrackedMedia,
+  getWatchedEpisodeCountsByMedia,
+  TrackedMedia,
+  UserProfile,
+} from "@/lib/db";
+import { Star, LayoutGrid, Film, Tv, Play, Bookmark } from "lucide-react";
 import TvTimeImporter from "@/components/TvTimeImporter";
 import { t } from "@/lib/i18n";
+import { cachedFetch } from "@/lib/apiCache";
+import { resolveWithConcurrency } from "@/lib/concurrency";
+
+const RUNTIME_SAMPLE_CONCURRENCY = 30;
+
+interface ShowStats {
+  count: number;
+  episodes: number;
+  minutes: number;
+}
+
+interface ProfileStats {
+  moviesWatchedCount: number;
+  moviesWatchedMinutes: number;
+  showsWatched: ShowStats;
+  showsWatching: ShowStats;
+  showsPending: ShowStats;
+}
+
+// Fetching every episode's runtime would be exact but slow (one call per season
+// per show). Instead we sample season 1 episode 1 as a proxy for the show's
+// average episode length — one TMDB call per show, per the user's chosen tradeoff.
+async function getAvgEpisodeRuntime(mediaId: string): Promise<number> {
+  try {
+    const data = await cachedFetch(`season-tv-${mediaId}-1`, async () => {
+      const res = await fetch(`/api/tmdb/season?type=tv&id=${mediaId}&season=1`);
+      return res.json();
+    });
+    const episodes = (data?.episodes || []) as { runtime: number | null }[];
+    const withRuntime = episodes.find((ep) => typeof ep.runtime === "number" && ep.runtime > 0);
+    return withRuntime?.runtime || 0;
+  } catch {
+    return 0;
+  }
+}
 
 export default function Profile() {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [tracked, setTracked] = useState<TrackedMedia[]>([]);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState<ProfileStats | null>(null);
+  const [statsLoading, setStatsLoading] = useState(false);
 
   useEffect(() => {
+    async function computeStats(userId: string, items: TrackedMedia[]) {
+      setStatsLoading(true);
+      try {
+        const movies = items.filter((i) => i.media_type === "movie" && i.status === "Watched");
+        const watchedShows = items.filter((i) => i.media_type === "tv" && i.status === "Watched");
+        const watchingShows = items.filter((i) => i.media_type === "tv" && i.status === "Currently Watching");
+        const pendingShows = items.filter((i) => i.media_type === "tv" && i.status === "Want to Watch");
+        const allShows = [...watchedShows, ...watchingShows, ...pendingShows];
+
+        // Most shows already have avg_episode_runtime saved in the DB (populated at track
+        // time / by the TV Time importer) — only shows tracked before that existed need a
+        // live TMDB sample, which keeps the common case free of any TMDB calls.
+        const showsMissingRuntime = allShows.filter((show) => !show.avg_episode_runtime);
+
+        const [watchedCounts, sampledRuntimes] = await Promise.all([
+          getWatchedEpisodeCountsByMedia(userId),
+          resolveWithConcurrency(showsMissingRuntime, RUNTIME_SAMPLE_CONCURRENCY, (show) =>
+            getAvgEpisodeRuntime(show.media_id)
+          ),
+        ]);
+        const avgRuntimeByMediaId: Record<string, number> = {};
+        allShows.forEach((show) => {
+          if (show.avg_episode_runtime) avgRuntimeByMediaId[show.media_id] = show.avg_episode_runtime;
+        });
+        showsMissingRuntime.forEach((show, idx) => {
+          avgRuntimeByMediaId[show.media_id] = sampledRuntimes[idx];
+        });
+
+        const showsWatched = watchedShows.reduce<ShowStats>(
+          (acc, show) => {
+            const total = show.total_episodes || 0;
+            acc.count += 1;
+            acc.episodes += total;
+            acc.minutes += total * (avgRuntimeByMediaId[show.media_id] || 0);
+            return acc;
+          },
+          { count: 0, episodes: 0, minutes: 0 }
+        );
+
+        const showsWatching = watchingShows.reduce<ShowStats>(
+          (acc, show) => {
+            const total = show.total_episodes || 0;
+            const watchedCount = watchedCounts[show.media_id] || 0;
+            const remaining = Math.max(0, total - watchedCount);
+            acc.count += 1;
+            acc.episodes += remaining;
+            acc.minutes += remaining * (avgRuntimeByMediaId[show.media_id] || 0);
+            return acc;
+          },
+          { count: 0, episodes: 0, minutes: 0 }
+        );
+
+        const showsPending = pendingShows.reduce<ShowStats>(
+          (acc, show) => {
+            const total = show.total_episodes || 0;
+            acc.count += 1;
+            acc.episodes += total;
+            acc.minutes += total * (avgRuntimeByMediaId[show.media_id] || 0);
+            return acc;
+          },
+          { count: 0, episodes: 0, minutes: 0 }
+        );
+
+        setStats({
+          moviesWatchedCount: movies.length,
+          moviesWatchedMinutes: movies.reduce((sum, m) => sum + (m.runtime || 0), 0),
+          showsWatched,
+          showsWatching,
+          showsPending,
+        });
+      } catch (err) {
+        console.error("Failed to compute profile stats:", err);
+      } finally {
+        setStatsLoading(false);
+      }
+    }
+
     async function loadProfile() {
       try {
         setLoading(true);
@@ -23,6 +143,7 @@ export default function Profile() {
         if (currentUser) {
           const items = await getTrackedMedia(currentUser.id);
           setTracked(items);
+          computeStats(currentUser.id, items);
         }
       } catch (err) {
         console.error("Failed to load user profile:", err);
@@ -57,16 +178,6 @@ export default function Profile() {
     );
   }
 
-  // Calculate statistics
-  const totalWatched = tracked.filter((i) => i.status === "Watched").length;
-  const currentlyWatching = tracked.filter((i) => i.status === "Currently Watching").length;
-  const watchlistCount = tracked.filter((i) => i.status === "Want to Watch").length;
-
-  const ratedItems = tracked.filter((i) => typeof i.user_rating === "number");
-  const averageRating = ratedItems.length > 0
-    ? (ratedItems.reduce((acc, curr) => acc + (curr.user_rating || 0), 0) / ratedItems.length).toFixed(1)
-    : "N/A";
-
   return (
     <div className="max-w-4xl mx-auto w-full px-4 sm:px-6 py-10 flex-1 flex flex-col">
       {/* Profile Header */}
@@ -86,59 +197,156 @@ export default function Profile() {
             <p className="text-zinc-400 text-sm font-semibold">
               {user.email}
             </p>
-            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 pt-2">
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xxs font-bold uppercase tracking-wider bg-zinc-800 text-zinc-300 border border-zinc-700">
-                <Clock className="h-3.5 w-3.5 text-yellow-400" />
-                {user.created_at
-                  ? t("profile.joined", { date: new Date(user.created_at).toLocaleDateString("it-IT") })
-                  : t("profile.joinedRecently")}
-              </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-lg text-xxs font-bold uppercase tracking-wider bg-zinc-800 text-zinc-300 border border-zinc-700">
-                <Award className="h-3.5 w-3.5 text-yellow-400" />
-                {t("profile.trackMaster")}
-              </span>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Grid Statistics Shelf */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-yellow-600 dark:text-yellow-400">
-            {totalWatched}
-          </span>
-          <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            {t("profile.statWatched")}
-          </span>
-        </div>
+      {/* Statistics Dashboard */}
+      <section className="mb-8">
+        <h2 className="text-lg font-black tracking-tight text-zinc-800 dark:text-zinc-200 mb-4">
+          {t("profile.statsTitle")}
+        </h2>
 
-        <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-yellow-600 dark:text-yellow-400">
-            {currentlyWatching}
-          </span>
-          <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            {t("profile.statWatching")}
-          </span>
-        </div>
+        {statsLoading || !stats ? (
+          <div className="bg-white dark:bg-zinc-900 rounded-3xl p-10 border border-zinc-200/60 dark:border-zinc-800 text-center">
+            <div className="h-6 w-6 animate-spin rounded-full border-4 border-solid border-yellow-600 border-t-transparent mx-auto mb-3" />
+            <p className="text-sm text-zinc-500 font-medium">{t("profile.statsComputing")}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
+              <div className="flex items-center gap-2 mb-4">
+                <Film className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
+                  {t("profile.statsMoviesTitle")}
+                </span>
+              </div>
+              <div className="flex items-end gap-6 flex-wrap">
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.moviesWatchedCount}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsFilmsLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
+                    {stats.moviesWatchedMinutes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsMinutesLabel")}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-        <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-yellow-600 dark:text-yellow-400">
-            {watchlistCount}
-          </span>
-          <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            {t("profile.statWatchlist")}
-          </span>
-        </div>
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
+              <div className="flex items-center gap-2 mb-4">
+                <Tv className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
+                  {t("profile.statsShowsWatchedTitle")}
+                </span>
+              </div>
+              <div className="flex items-end gap-6 flex-wrap">
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.showsWatched.count}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsShowsLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.showsWatched.episodes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsEpisodesWatchedLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
+                    {stats.showsWatched.minutes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsMinutesLabel")}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-        <div className="bg-white dark:bg-zinc-900 p-5 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 text-center">
-          <span className="block text-3xl font-black text-amber-500">
-            {averageRating}
-          </span>
-          <span className="block text-xxs font-black text-zinc-400 uppercase tracking-wider mt-1">
-            {t("profile.statAvgRating")}
-          </span>
-        </div>
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
+              <div className="flex items-center gap-2 mb-4">
+                <Play className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
+                  {t("profile.statsShowsWatchingTitle")}
+                </span>
+              </div>
+              <div className="flex items-end gap-6 flex-wrap">
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.showsWatching.count}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsShowsLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.showsWatching.episodes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsEpisodesRemainingLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
+                    {stats.showsWatching.minutes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsMinutesRemainingLabel")}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
+              <div className="flex items-center gap-2 mb-4">
+                <Bookmark className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
+                  {t("profile.statsShowsPendingTitle")}
+                </span>
+              </div>
+              <div className="flex items-end gap-6 flex-wrap">
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.showsPending.count}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsShowsLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
+                    {stats.showsPending.episodes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsEpisodesRemainingLabel")}
+                  </span>
+                </div>
+                <div>
+                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
+                    {stats.showsPending.minutes}
+                  </span>
+                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
+                    {t("profile.statsMinutesRemainingLabel")}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Recent Activity Grid */}

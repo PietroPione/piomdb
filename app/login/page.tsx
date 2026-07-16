@@ -4,8 +4,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getCurrentUser, signUpUser, signInUser, isSupabaseConfigured } from "@/lib/db";
-import { Film, Mail, Lock, User, Sparkles, Check } from "lucide-react";
+import { getCurrentUser, signUpUser, signInUser } from "@/lib/db";
+import { Film, Mail, Lock, User, Check } from "lucide-react";
 import { t } from "@/lib/i18n";
 
 export default function Login() {
@@ -118,7 +118,7 @@ export default function Login() {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     placeholder={t("login.usernamePlaceholder")}
-                    className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm"
+                    className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-base"
                   />
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t("login.emailPlaceholder")}
-                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm"
+                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-base"
                 />
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;"
-                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-sm"
+                  className="block w-full pl-10 pr-3 py-2.5 bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500/20 focus:border-yellow-500 text-base"
                 />
               </div>
             </div>
@@ -172,14 +172,6 @@ export default function Login() {
               </button>
             </div>
           </form>
-
-          {/* Fallback Notice */}
-          <div className="mt-6 pt-5 border-t border-zinc-100 dark:border-zinc-800 text-center">
-            <span className="inline-flex items-center gap-1.5 text-xxs font-semibold bg-yellow-50 dark:bg-yellow-950/20 text-yellow-600 dark:text-yellow-400 px-3 py-1.5 rounded-full border border-yellow-100/30 dark:border-yellow-900/20">
-              <Sparkles className="h-3 w-3" />
-              {isSupabaseConfigured ? t("login.connectedSupabase") : t("login.connectedLocalFallback")}
-            </span>
-          </div>
         </div>
       </div>
     </div>

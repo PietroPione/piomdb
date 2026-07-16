@@ -197,6 +197,10 @@ export default function MediaDetail({ params }: PageProps) {
         user_rating: trackingState?.user_rating || undefined,
         is_favorite: trackingState?.is_favorite,
         total_episodes: mediaType === "tv" ? media.number_of_episodes : undefined,
+        runtime: mediaType === "movie" ? media.runtime : undefined,
+        // Already fetched as part of the season prefetch above — reuses that data instead
+        // of an extra TMDB call, so the profile stats page never has to fetch it itself.
+        avg_episode_runtime: mediaType === "tv" ? (seasonEpisodes[1]?.[0]?.runtime ?? undefined) : undefined,
       };
 
       const result = await upsertTrackedMedia(user.id, payload);
@@ -231,6 +235,10 @@ export default function MediaDetail({ params }: PageProps) {
         user_rating: trackingState?.user_rating || undefined,
         is_favorite: !trackingState?.is_favorite,
         total_episodes: mediaType === "tv" ? media.number_of_episodes : undefined,
+        runtime: mediaType === "movie" ? media.runtime : undefined,
+        // Already fetched as part of the season prefetch above — reuses that data instead
+        // of an extra TMDB call, so the profile stats page never has to fetch it itself.
+        avg_episode_runtime: mediaType === "tv" ? (seasonEpisodes[1]?.[0]?.runtime ?? undefined) : undefined,
       };
 
       const result = await upsertTrackedMedia(user.id, payload);
@@ -272,6 +280,10 @@ export default function MediaDetail({ params }: PageProps) {
         user_rating: rating,
         is_favorite: trackingState.is_favorite,
         total_episodes: mediaType === "tv" ? media.number_of_episodes : undefined,
+        runtime: mediaType === "movie" ? media.runtime : undefined,
+        // Already fetched as part of the season prefetch above — reuses that data instead
+        // of an extra TMDB call, so the profile stats page never has to fetch it itself.
+        avg_episode_runtime: mediaType === "tv" ? (seasonEpisodes[1]?.[0]?.runtime ?? undefined) : undefined,
       };
       const result = await upsertTrackedMedia(user.id, payload);
       if (result) {

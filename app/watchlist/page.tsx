@@ -27,9 +27,9 @@ export default function Watchlist() {
   const [user, setUser] = useState<any>(null);
   const [tracked, setTracked] = useState<TrackedMedia[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<typeof WATCH_STATUS_CATEGORIES[number] | "All" | "Favorites">("All");
+  const [activeTab, setActiveTab] = useState<typeof WATCH_STATUS_CATEGORIES[number] | "All" | "Favorites">("Currently Watching");
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editRating, setEditRating] = useState<number>(10);
+  const [editRating, setEditRating] = useState<number | undefined>(undefined);
   const [editStatus, setEditStatus] = useState<TrackedMedia["status"]>("Watched");
   const [editFavorite, setEditFavorite] = useState<boolean>(false);
 
@@ -82,7 +82,7 @@ export default function Watchlist() {
 
   const startEdit = (item: TrackedMedia) => {
     setEditingId(`${item.media_type}-${item.media_id}`);
-    setEditRating(item.user_rating || 10);
+    setEditRating(item.user_rating);
     setEditStatus(item.status);
     setEditFavorite(item.is_favorite || false);
   };
@@ -204,8 +204,9 @@ export default function Watchlist() {
           {filteredItems.map(item => {
             const isEditing = editingId === `${item.media_type}-${item.media_id}`;
             return (
-              <div
+              <Link
                 key={`${item.media_type}-${item.media_id}`}
+                href={`/media/${item.media_type}/${item.media_id}`}
                 className="flex bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200/60 dark:border-zinc-800 shadow-sm overflow-hidden transition-all hover:shadow-md"
               >
                 {/* Poster section */}
@@ -226,14 +227,15 @@ export default function Watchlist() {
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
                     <div className="flex justify-between items-start gap-2">
-                      <Link
-                        href={`/media/${item.media_type}/${item.media_id}`}
-                        className="font-bold text-zinc-900 dark:text-zinc-50 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors line-clamp-1 text-base"
-                      >
+                      <span className="font-bold text-zinc-900 dark:text-zinc-50 line-clamp-1 text-base">
                         {item.title}
-                      </Link>
+                      </span>
                       <button
-                        onClick={() => handleDelete(item.media_id, item.media_type)}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleDelete(item.media_id, item.media_type);
+                        }}
                         className="text-zinc-400 hover:text-red-500 p-1 rounded-lg transition-colors"
                         title={t("watchlist.removeTracking")}
                       >
@@ -262,7 +264,13 @@ export default function Watchlist() {
                   </div>
 
                   {/* Edit interface overlay or drawer */}
-                  <div className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/60">
+                  <div
+                    className="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/60"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
                     {isEditing ? (
                       <div className="space-y-3">
                         <div className="flex gap-2">
@@ -281,10 +289,11 @@ export default function Watchlist() {
                           <div>
                             <label className="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1">{t("watchlist.ratingLabel")}</label>
                             <select
-                              value={editRating}
-                              onChange={(e) => setEditRating(parseInt(e.target.value, 10))}
+                              value={editRating ?? ""}
+                              onChange={(e) => setEditRating(e.target.value === "" ? undefined : parseInt(e.target.value, 10))}
                               className="w-full text-xs bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1.5 font-semibold focus:outline-none focus:ring-1 focus:ring-yellow-500"
                             >
+                              <option value="">{t("watchlist.noRating")}</option>
                               {[10, 9, 8, 7, 6, 5, 4, 3, 2, 1].map(r => (
                                 <option key={r} value={r}>{r}/10</option>
                               ))}
@@ -328,7 +337,7 @@ export default function Watchlist() {
                     )}
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

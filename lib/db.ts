@@ -30,6 +30,8 @@ export interface TrackedMedia {
   is_favorite?: boolean;
   user_rating?: number; // User rating out of 10
   total_episodes?: number | null; // TV only — lets a DB trigger auto-flip status to Watched
+  runtime?: number | null; // Movie only — minutes, used for profile stats totals
+  avg_episode_runtime?: number | null; // TV only — sampled S1E1 runtime, used for profile stats totals
   updated_at?: string;
 }
 
@@ -253,6 +255,32 @@ export async function getWatchedEpisodes(userId: string, mediaId: string): Promi
   }
 
   return readWatchedEpisodes().filter((e) => e.user_id === userId && e.media_id === mediaId);
+}
+
+export async function getWatchedEpisodeCountsByMedia(userId: string): Promise<Record<string, number>> {
+  if (isSupabaseConfigured && supabase) {
+    const { data, error } = await supabase
+      .from('watched_episodes')
+      .select('media_id')
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error('Error fetching watched episode counts from Supabase:', error);
+      return {};
+    }
+    const counts: Record<string, number> = {};
+    for (const row of data || []) {
+      counts[row.media_id] = (counts[row.media_id] || 0) + 1;
+    }
+    return counts;
+  }
+
+  const counts: Record<string, number> = {};
+  for (const entry of readWatchedEpisodes()) {
+    if (entry.user_id !== userId) continue;
+    counts[entry.media_id] = (counts[entry.media_id] || 0) + 1;
+  }
+  return counts;
 }
 
 export async function setEpisodeWatched(

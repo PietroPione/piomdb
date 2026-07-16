@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Search, Film, SlidersHorizontal, Star } from "lucide-react";
 import { t } from "@/lib/i18n";
+import { scrollBelowNavbar } from "@/lib/scroll";
 
 export default function Discover() {
   const [query, setQuery] = useState("");
@@ -63,7 +64,7 @@ export default function Discover() {
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.currentTarget.blur(); // dismiss the mobile keyboard
-      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      scrollBelowNavbar(resultsRef.current);
     }
   };
 

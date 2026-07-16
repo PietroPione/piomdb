@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Search, Star, Play, Clock, TrendingUp, Sparkles } from "lucide-react";
 import { getCurrentUser, getTrackedMedia, TrackedMedia } from "@/lib/db";
 import { t } from "@/lib/i18n";
+import { scrollBelowNavbar } from "@/lib/scroll";
 
 export default function Home() {
   const [results, setResults] = useState<any[]>([]);
@@ -17,7 +18,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [mediaType, setMediaType] = useState<"all" | "movie" | "tv">("all");
   const [isPending, startTransition] = useTransition();
-  const resultsRef = useRef<HTMLDivElement>(null);
+  const searchEndRef = useRef<HTMLDivElement>(null);
 
   // Hidden/Private mock activity feed for friends
   const [showFriendsActivity] = useState(false); // Flag configured as false to keep section hidden as requested
@@ -87,7 +88,7 @@ export default function Home() {
   const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       e.currentTarget.blur(); // dismiss the mobile keyboard
-      resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      scrollBelowNavbar(searchEndRef.current);
     }
   };
 
@@ -149,6 +150,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <div ref={searchEndRef} />
       </section>
 
       {/* Currently Watching Shelf - hidden while actively searching so results don't have to compete for attention */}
@@ -192,7 +194,7 @@ export default function Home() {
       )}
 
       {/* Results: search results when there's a query, trending otherwise */}
-      <section ref={resultsRef} className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-12 flex-1">
+      <section className="max-w-6xl mx-auto w-full px-4 sm:px-6 py-12 flex-1">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
