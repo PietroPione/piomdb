@@ -16,6 +16,7 @@ import {
 } from "@/lib/db";
 import { UploadCloud, Loader2, CheckCircle2, AlertCircle, FileText, FileArchive } from "lucide-react";
 import { cachedFetch } from "@/lib/apiCache";
+import { extractTasteProfile } from "@/lib/tasteProfile";
 import { t } from "@/lib/i18n";
 import { TMDB_RATE_PER_SECOND } from "@/lib/rateLimit";
 import { resolveWithConcurrency } from "@/lib/concurrency";
@@ -268,17 +269,23 @@ export default function TvTimeImporter() {
 
         // Total episode count lets us set the correct status immediately below (fully-imported
         // shows become "Watched" right away) and feeds the DB trigger that keeps status in sync
-        // for every future write. Reuse it from a previous import instead of refetching.
+        // for every future write. Genres/keywords feed the home page's taste-profile shelves.
+        // All reused from a previous import when present instead of refetching.
         let totalEpisodes = cached?.total_episodes ?? null;
-        if (!totalEpisodes) {
+        let genres = cached?.genres ?? null;
+        let keywords = cached?.keywords ?? null;
+        if (!totalEpisodes || !genres) {
           try {
-            const detail = await cachedFetch(`detail-tv-${idPoster.id}`, async () => {
+            const detail = await cachedFetch(`detail-v2-tv-${idPoster.id}`, async () => {
               const res = await fetch(`/api/tmdb/detail?type=tv&id=${idPoster!.id}`);
               return res.json();
             });
-            totalEpisodes = detail?.number_of_episodes ?? null;
+            totalEpisodes = totalEpisodes ?? detail?.number_of_episodes ?? null;
+            const taste = extractTasteProfile(detail);
+            genres = genres ?? taste.genres;
+            keywords = keywords ?? taste.keywords;
           } catch {
-            totalEpisodes = null;
+            // keep whatever was already cached, if anything
           }
         }
 
@@ -298,7 +305,7 @@ export default function TvTimeImporter() {
           }
         }
 
-        return { ...idPoster, totalEpisodes, avgEpisodeRuntime };
+        return { ...idPoster, totalEpisodes, avgEpisodeRuntime, genres, keywords };
       });
 
       // Different TV Time shows can resolve to the same OMDb title (e.g. regional
@@ -326,6 +333,8 @@ export default function TvTimeImporter() {
         const watchedSet = watchedByShow.get(show.title);
         const totalEpisodes = resolved?.totalEpisodes ?? null;
         const avgEpisodeRuntime = resolved?.avgEpisodeRuntime ?? null;
+        const genres = resolved?.genres ?? null;
+        const keywords = resolved?.keywords ?? null;
 
         // Prefer the actual imported episode completion over TV Time's own
         // is_followed/nb_episodes_seen fields, which don't reflect it (a "followed"
@@ -345,6 +354,8 @@ export default function TvTimeImporter() {
           user_rating: show.isFavorited ? 10 : undefined,
           total_episodes: totalEpisodes,
           avg_episode_runtime: avgEpisodeRuntime,
+          genres,
+          keywords,
         });
 
         if (watchedSet) {
@@ -388,10 +399,12 @@ export default function TvTimeImporter() {
     }
   };
 
-  // One-time fix for shows tracked before total_episodes existed: their status was derived
-  // from TV Time's own is_followed/nb_episodes_seen fields, which don't reflect actually
-  // imported episode completion. Re-checks each show against TMDB and backfills total_episodes
-  // so the DB trigger keeps them correct from now on, without needing a full re-import.
+  // One-time fix for items tracked before total_episodes/runtime/taste-profile fields
+  // existed. For TV shows: status was derived from TV Time's own is_followed/nb_episodes_seen
+  // fields, which don't reflect actually imported episode completion — re-checks each show
+  // against TMDB and backfills total_episodes so the DB trigger keeps status correct from now
+  // on. For every item (movie or show): backfills genres/keywords so the home page's
+  // taste-profile shelves cover titles tracked before that existed, without a full re-import.
   const handleReconcileStatus = async () => {
     setStatus("importing");
     setErrorMessage("");
@@ -405,60 +418,91 @@ export default function TvTimeImporter() {
         return;
       }
 
-      const tvShows = (await getTrackedMedia(user.id)).filter((item) => item.media_type === "tv");
+      const allItems = await getTrackedMedia(user.id);
 
       let checked = 0;
       let fixed = 0;
-      setProgressTotal(tvShows.length);
+      setProgressTotal(allItems.length);
       setProgressCurrent(0);
-      setProgressText(t("importer.checkingStatuses", { count: 0, total: tvShows.length }));
+      setProgressText(t("importer.checkingStatuses", { count: 0, total: allItems.length }));
 
-      await resolveWithConcurrency(tvShows, RESOLVE_CONCURRENCY, async (show) => {
+      await resolveWithConcurrency(allItems, RESOLVE_CONCURRENCY, async (item) => {
         try {
-          const detail = await cachedFetch(`detail-tv-${show.media_id}`, async () => {
-            const res = await fetch(`/api/tmdb/detail?type=tv&id=${show.media_id}`);
+          const detail = await cachedFetch(`detail-v2-${item.media_type}-${item.media_id}`, async () => {
+            const res = await fetch(`/api/tmdb/detail?type=${item.media_type}&id=${item.media_id}`);
             return res.json();
           });
+
+          const taste = extractTasteProfile(detail);
+          const genres = item.genres ?? taste.genres;
+          const keywords = item.keywords ?? taste.keywords;
+
+          if (item.media_type === "movie") {
+            const runtime = item.runtime ?? detail?.runtime ?? null;
+            const needsUpdate = (runtime && runtime !== item.runtime) || genres !== item.genres || keywords !== item.keywords;
+            if (needsUpdate) {
+              await upsertTrackedMedia(user.id, {
+                media_id: item.media_id,
+                media_type: "movie",
+                title: item.title,
+                poster_path: item.poster_path,
+                status: item.status,
+                user_rating: item.user_rating,
+                is_favorite: item.is_favorite,
+                runtime,
+                genres,
+                keywords,
+              });
+            }
+            return;
+          }
+
           const total: number | null = detail?.number_of_episodes ?? null;
 
           // Backfills shows tracked before avg_episode_runtime existed, so the profile
           // stats page can read it straight from the DB without ever calling TMDB itself.
-          let avgEpisodeRuntime = show.avg_episode_runtime ?? null;
+          let avgEpisodeRuntime = item.avg_episode_runtime ?? null;
           if (!avgEpisodeRuntime) {
-            const season1 = await cachedFetch(`season-tv-${show.media_id}-1`, async () => {
-              const res = await fetch(`/api/tmdb/season?type=tv&id=${show.media_id}&season=1`);
+            const season1 = await cachedFetch(`season-tv-${item.media_id}-1`, async () => {
+              const res = await fetch(`/api/tmdb/season?type=tv&id=${item.media_id}&season=1`);
               return res.json();
             });
             const episodes = (season1?.episodes || []) as { runtime: number | null }[];
             avgEpisodeRuntime = episodes.find((ep) => typeof ep.runtime === "number" && ep.runtime > 0)?.runtime ?? null;
           }
 
-          if ((total && total !== show.total_episodes) || (avgEpisodeRuntime && avgEpisodeRuntime !== show.avg_episode_runtime)) {
-            const watched = await getWatchedEpisodes(user.id, show.media_id);
+          const needsUpdate = (total && total !== item.total_episodes)
+            || (avgEpisodeRuntime && avgEpisodeRuntime !== item.avg_episode_runtime)
+            || genres !== item.genres || keywords !== item.keywords;
+
+          if (needsUpdate) {
+            const watched = await getWatchedEpisodes(user.id, item.media_id);
             const nowWatched = !!total && watched.length >= total;
             await upsertTrackedMedia(user.id, {
-              media_id: show.media_id,
+              media_id: item.media_id,
               media_type: "tv",
-              title: show.title,
-              poster_path: show.poster_path,
-              status: nowWatched ? "Watched" : show.status,
-              user_rating: show.user_rating,
-              is_favorite: show.is_favorite,
+              title: item.title,
+              poster_path: item.poster_path,
+              status: nowWatched ? "Watched" : item.status,
+              user_rating: item.user_rating,
+              is_favorite: item.is_favorite,
               total_episodes: total,
               avg_episode_runtime: avgEpisodeRuntime,
+              genres,
+              keywords,
             });
-            if (nowWatched && show.status !== "Watched") fixed++;
+            if (nowWatched && item.status !== "Watched") fixed++;
           }
         } catch (err) {
-          console.error(`Failed reconciling ${show.title}:`, err);
+          console.error(`Failed reconciling ${item.title}:`, err);
         } finally {
           checked++;
           setProgressCurrent(checked);
-          setProgressText(t("importer.checkingStatuses", { count: checked, total: tvShows.length }));
+          setProgressText(t("importer.checkingStatuses", { count: checked, total: allItems.length }));
         }
       });
 
-      setReconcileSummary({ checked: tvShows.length, fixed });
+      setReconcileSummary({ checked: allItems.length, fixed });
       setStatus("done");
     } catch (err) {
       console.error("Status reconciliation failed:", err);

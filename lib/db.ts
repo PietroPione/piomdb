@@ -32,6 +32,8 @@ export interface TrackedMedia {
   total_episodes?: number | null; // TV only — lets a DB trigger auto-flip status to Watched
   runtime?: number | null; // Movie only — minutes, used for profile stats totals
   avg_episode_runtime?: number | null; // TV only — sampled S1E1 runtime, used for profile stats totals
+  genres?: { id: number; name: string }[] | null; // Taste profile — feeds home genre shelf
+  keywords?: { id: number; name: string }[] | null; // Themes/tags — feeds home theme shelf
   updated_at?: string;
 }
 

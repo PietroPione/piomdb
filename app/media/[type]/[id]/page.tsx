@@ -18,6 +18,8 @@ import {
 } from "@/lib/db";
 import { ChevronLeft, Star, Film, Tv, AlertCircle, Check, ChevronDown, Heart } from "lucide-react";
 import { cachedFetch } from "@/lib/apiCache";
+import { extractTasteProfile } from "@/lib/tasteProfile";
+import { formatNumber } from "@/lib/format";
 import { t } from "@/lib/i18n";
 
 interface SeasonEpisode {
@@ -77,7 +79,9 @@ export default function MediaDetail({ params }: PageProps) {
         setUser(currentUser);
 
         // Fetch Detail info from Secure API Route (cached — title/poster/overview don't change)
-        const detailData = await cachedFetch(`detail-${mediaType}-${id}`, async () => {
+        // -v2: detail payloads gained `keywords`; older cached entries lack it and would
+        // silently starve the taste profile until they expired.
+        const detailData = await cachedFetch(`detail-v2-${mediaType}-${id}`, async () => {
           const res = await fetch(`/api/tmdb/detail?type=${mediaType}&id=${id}`);
           if (!res.ok) throw new Error("Could not load media details");
           const data = await res.json();
@@ -201,6 +205,9 @@ export default function MediaDetail({ params }: PageProps) {
         // Already fetched as part of the season prefetch above — reuses that data instead
         // of an extra TMDB call, so the profile stats page never has to fetch it itself.
         avg_episode_runtime: mediaType === "tv" ? (seasonEpisodes[1]?.[0]?.runtime ?? undefined) : undefined,
+        // Taste-profile signals (genres + themes), reused from the detail payload
+        // already in memory so the home shelves never call TMDB again.
+        ...extractTasteProfile(media),
       };
 
       const result = await upsertTrackedMedia(user.id, payload);
@@ -239,6 +246,9 @@ export default function MediaDetail({ params }: PageProps) {
         // Already fetched as part of the season prefetch above — reuses that data instead
         // of an extra TMDB call, so the profile stats page never has to fetch it itself.
         avg_episode_runtime: mediaType === "tv" ? (seasonEpisodes[1]?.[0]?.runtime ?? undefined) : undefined,
+        // Taste-profile signals (genres + themes), reused from the detail payload
+        // already in memory so the home shelves never call TMDB again.
+        ...extractTasteProfile(media),
       };
 
       const result = await upsertTrackedMedia(user.id, payload);
@@ -284,6 +294,9 @@ export default function MediaDetail({ params }: PageProps) {
         // Already fetched as part of the season prefetch above — reuses that data instead
         // of an extra TMDB call, so the profile stats page never has to fetch it itself.
         avg_episode_runtime: mediaType === "tv" ? (seasonEpisodes[1]?.[0]?.runtime ?? undefined) : undefined,
+        // Taste-profile signals (genres + themes), reused from the detail payload
+        // already in memory so the home shelves never call TMDB again.
+        ...extractTasteProfile(media),
       };
       const result = await upsertTrackedMedia(user.id, payload);
       if (result) {
@@ -514,7 +527,7 @@ export default function MediaDetail({ params }: PageProps) {
                       </div>
                       {totalMinutes > 0 && (
                         <div className="text-[10px] text-zinc-400 font-semibold text-right">
-                          {t("mediaDetail.minutesWatched", { watched: watchedMinutes.toLocaleString("it-IT"), total: totalMinutes.toLocaleString("it-IT") })}
+                          {t("mediaDetail.minutesWatched", { watched: formatNumber(watchedMinutes), total: formatNumber(totalMinutes) })}
                         </div>
                       )}
                     </div>
@@ -822,14 +835,18 @@ export default function MediaDetail({ params }: PageProps) {
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
                 {media.credits.cast.map((actor: any, index: number) => (
-                  <div key={`${actor.id ?? actor.credit_id ?? actor.name ?? 'actor'}-${index}`} className="text-center sm:text-left space-y-1">
+                  <Link
+                    key={`${actor.id ?? actor.credit_id ?? actor.name ?? 'actor'}-${index}`}
+                    href={`/person/${actor.id}`}
+                    className="group text-center sm:text-left space-y-1"
+                  >
                     <div className="relative aspect-square w-16 sm:w-20 rounded-full overflow-hidden bg-zinc-100 dark:bg-zinc-800 mx-auto sm:mx-0">
                       {actor.profile_path ? (
                         <Image
                           src={actor.profile_path}
                           alt={actor.name}
                           fill
-                          className="object-cover"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
                           unoptimized
                         />
                       ) : (
@@ -838,13 +855,13 @@ export default function MediaDetail({ params }: PageProps) {
                         </div>
                       )}
                     </div>
-                    <div className="font-bold text-xs text-zinc-900 dark:text-zinc-50">
+                    <div className="font-bold text-xs text-zinc-900 dark:text-zinc-50 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">
                       {actor.name}
                     </div>
                     <div className="text-[10px] text-zinc-500 font-semibold line-clamp-1">
                       {actor.character}
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -858,14 +875,18 @@ export default function MediaDetail({ params }: PageProps) {
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {media.credits.crew.map((member: any, idx: number) => (
-                  <div key={`${member.id ?? member.credit_id ?? member.name ?? 'crew'}-${idx}`} className="space-y-0.5">
-                    <div className="font-bold text-xs text-zinc-900 dark:text-zinc-50">
+                  <Link
+                    key={`${member.id ?? member.credit_id ?? member.name ?? 'crew'}-${idx}`}
+                    href={`/person/${member.id}`}
+                    className="group space-y-0.5"
+                  >
+                    <div className="font-bold text-xs text-zinc-900 dark:text-zinc-50 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">
                       {member.name}
                     </div>
                     <div className="text-[10px] text-yellow-600 dark:text-yellow-400 font-bold uppercase tracking-wider">
                       {member.job} ({member.department})
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

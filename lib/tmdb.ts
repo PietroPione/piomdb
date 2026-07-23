@@ -33,6 +33,7 @@ export interface MediaItem {
     cast: { id: number; name: string; character: string; profile_path: string | null }[];
     crew: { id: number; name: string; job: string; department: string }[];
   };
+  keywords?: { id: number; name: string }[];
 }
 
 export interface SeasonEpisode {
@@ -147,7 +148,9 @@ export async function resolveShowByTitle(title: string, type: "movie" | "tv" = "
 
 export async function getMediaDetail(type: "movie" | "tv", id: string | number) {
   try {
-    const payload = await fetchFromTMDB(`/${type}/${id}`, { append_to_response: "credits" });
+    // Keywords piggyback on the same request as credits — no extra TMDB call needed
+    // to feed the taste profile's theme signal.
+    const payload = await fetchFromTMDB(`/${type}/${id}`, { append_to_response: "credits,keywords" });
 
     const cast = (payload.credits?.cast || []).slice(0, 15).map((c: any) => ({
       id: c.id,
@@ -160,6 +163,12 @@ export async function getMediaDetail(type: "movie" | "tv", id: string | number) 
       .filter((c: any) => ["Director", "Writer", "Screenplay", "Creator"].includes(c.job) || c.department === "Writing")
       .slice(0, 8)
       .map((c: any) => ({ id: c.id, name: c.name, job: c.job, department: c.department }));
+
+    // Movie and tv keyword sub-responses wrap the same shape under different keys.
+    const keywords = ((payload.keywords?.keywords || payload.keywords?.results || []) as any[]).map((k: any) => ({
+      id: k.id,
+      name: k.name,
+    }));
 
     return {
       id: String(payload.id),
@@ -178,6 +187,7 @@ export async function getMediaDetail(type: "movie" | "tv", id: string | number) 
       status: payload.status || "Unknown",
       tagline: payload.tagline || "",
       credits: { cast, crew },
+      keywords,
     } satisfies MediaItem;
   } catch (error) {
     console.error("TMDB detail failed:", error);
@@ -200,5 +210,152 @@ export async function getSeasonEpisodes(id: string, season: number): Promise<Sea
   } catch (error) {
     console.error("TMDB season fetch failed:", error);
     return [];
+  }
+}
+
+export interface TmdbTag {
+  id: number;
+  name: string;
+}
+
+export async function getGenreList(type: "movie" | "tv"): Promise<TmdbTag[]> {
+  try {
+    const payload = await fetchFromTMDB(`/genre/${type}/list`);
+    return (payload.genres || []) as TmdbTag[];
+  } catch (error) {
+    console.error("TMDB genre list failed:", error);
+    return [];
+  }
+}
+
+export async function searchKeyword(query: string): Promise<TmdbTag[]> {
+  if (!query.trim()) return [];
+  try {
+    const payload = await fetchFromTMDB("/search/keyword", { query });
+    return (payload.results || []) as TmdbTag[];
+  } catch (error) {
+    console.error("TMDB keyword search failed:", error);
+    return [];
+  }
+}
+
+export interface PersonResult extends TmdbTag {
+  profile_path: string | null;
+  known_for_department: string;
+}
+
+export async function searchPerson(query: string): Promise<PersonResult[]> {
+  if (!query.trim()) return [];
+  try {
+    const payload = await fetchFromTMDB("/search/person", { query });
+    return ((payload.results || []) as any[]).map((p) => ({
+      id: p.id,
+      name: p.name,
+      profile_path: p.profile_path ? `${TMDB_POSTER_URL}${p.profile_path}` : null,
+      known_for_department: p.known_for_department || "",
+    }));
+  } catch (error) {
+    console.error("TMDB person search failed:", error);
+    return [];
+  }
+}
+
+/** A title a person worked on, tagged with the role they had on it. */
+export interface PersonCredit extends MediaItem {
+  role: string; // crew job ("Director", "Writer", …) or "Acting" for cast credits
+  department: string;
+}
+
+export interface PersonDetail {
+  id: string;
+  name: string;
+  profile_path: string | null;
+  biography: string;
+  known_for_department: string;
+  credits: PersonCredit[];
+}
+
+/**
+ * A person plus their full filmography. Cast and crew credits are returned as one
+ * list, each tagged with its role, so the UI can filter by "Director"/"Writer"/etc.
+ * A person credited twice on the same title (e.g. wrote and directed it) yields one
+ * entry per role — callers dedupe when showing an unfiltered list.
+ */
+export async function getPersonWithCredits(id: string | number): Promise<PersonDetail | null> {
+  try {
+    const payload = await fetchFromTMDB(`/person/${id}`, { append_to_response: "combined_credits" });
+    if (!payload?.id) return null;
+
+    const toCredit = (item: any, role: string, department: string): PersonCredit => ({
+      ...mapTmdbToMedia(item, item.media_type === "tv" ? "tv" : "movie"),
+      role,
+      department,
+    });
+
+    const isShowable = (c: any) => c.media_type === "movie" || c.media_type === "tv";
+
+    const cast = ((payload.combined_credits?.cast || []) as any[])
+      .filter(isShowable)
+      .map((c) => toCredit(c, "Acting", "Acting"));
+    const crew = ((payload.combined_credits?.crew || []) as any[])
+      .filter(isShowable)
+      .map((c) => toCredit(c, c.job || "Crew", c.department || "Crew"));
+
+    // Newest first — a filmography reads better in reverse-chronological order.
+    const credits = [...cast, ...crew].sort((a, b) => (b.release_date || "").localeCompare(a.release_date || ""));
+
+    return {
+      id: String(payload.id),
+      name: payload.name || "",
+      profile_path: payload.profile_path ? `${TMDB_POSTER_URL}${payload.profile_path}` : null,
+      biography: payload.biography || "",
+      known_for_department: payload.known_for_department || "",
+      credits,
+    };
+  } catch (error) {
+    console.error("TMDB person fetch failed:", error);
+    return null;
+  }
+}
+
+export interface DiscoverOptions {
+  genreIds?: number[];
+  keywordIds?: number[];
+  castIds?: number[];
+  crewIds?: number[];
+  sortBy?: string;
+  minVoteAverage?: number;
+  minVoteCount?: number;
+  page?: number;
+}
+
+export interface DiscoverResult {
+  results: MediaItem[];
+  totalResults: number;
+}
+
+// Multiple ids for the same filter are joined with "," (AND) — picking several
+// genre/keyword/person chips narrows results down to titles matching all of them.
+export async function discoverMedia(type: "movie" | "tv", options: DiscoverOptions = {}): Promise<DiscoverResult> {
+  const params: Record<string, string> = {
+    sort_by: options.sortBy || "popularity.desc",
+    "vote_count.gte": String(options.minVoteCount ?? 50),
+  };
+  if (options.genreIds?.length) params.with_genres = options.genreIds.join(",");
+  if (options.keywordIds?.length) params.with_keywords = options.keywordIds.join(",");
+  if (options.castIds?.length) params.with_cast = options.castIds.join(",");
+  if (options.crewIds?.length) params.with_crew = options.crewIds.join(",");
+  if (options.minVoteAverage) params["vote_average.gte"] = String(options.minVoteAverage);
+  if (options.page) params.page = String(options.page);
+
+  try {
+    const payload = await fetchFromTMDB(`/discover/${type}`, params);
+    return {
+      results: ((payload.results || []) as any[]).map((item) => mapTmdbToMedia(item, type)),
+      totalResults: payload.total_results || 0,
+    };
+  } catch (error) {
+    console.error("TMDB discover failed:", error);
+    return { results: [], totalResults: 0 };
   }
 }

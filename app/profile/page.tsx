@@ -15,6 +15,8 @@ import TvTimeImporter from "@/components/TvTimeImporter";
 import { t } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/apiCache";
 import { resolveWithConcurrency } from "@/lib/concurrency";
+import { formatDuration } from "@/lib/duration";
+import { formatNumber } from "@/lib/format";
 
 const RUNTIME_SAMPLE_CONCURRENCY = 30;
 
@@ -47,6 +49,50 @@ async function getAvgEpisodeRuntime(mediaId: string): Promise<number> {
   } catch {
     return 0;
   }
+}
+
+/** One big number with its caption. `accent` marks the headline figure of a card. */
+function StatTile({ value, label, accent = false }: { value: number; label: string; accent?: boolean }) {
+  return (
+    <div>
+      <span
+        className={`block text-4xl font-black ${
+          accent ? "text-yellow-600 dark:text-yellow-400" : "text-zinc-900 dark:text-zinc-50"
+        }`}
+      >
+        {formatNumber(value)}
+      </span>
+      <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">{label}</span>
+    </div>
+  );
+}
+
+/** A stats card: icon + title, a row of tiles, and an optional prose footer. */
+function StatCard({
+  icon: Icon,
+  title,
+  footer,
+  children,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  footer?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
+      <div className="flex items-center gap-2 mb-4">
+        <Icon className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
+        <span className="text-sm font-black uppercase tracking-wider text-zinc-500">{title}</span>
+      </div>
+      <div className="flex items-end gap-6 flex-wrap">{children}</div>
+      {footer && (
+        <p className="text-xs font-semibold text-zinc-500 dark:text-zinc-400 mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800">
+          {footer}
+        </p>
+      )}
+    </div>
+  );
 }
 
 export default function Profile() {
@@ -214,137 +260,44 @@ export default function Profile() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Film className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
-                  {t("profile.statsMoviesTitle")}
-                </span>
-              </div>
-              <div className="flex items-end gap-6 flex-wrap">
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.moviesWatchedCount}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsFilmsLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
-                    {stats.moviesWatchedMinutes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsMinutesLabel")}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <StatCard
+              icon={Film}
+              title={t("profile.statsMoviesTitle")}
+              footer={formatDuration(stats.moviesWatchedMinutes)}
+            >
+              <StatTile value={stats.moviesWatchedCount} label={t("profile.statsFilmsLabel")} />
+              <StatTile value={stats.moviesWatchedMinutes} label={t("profile.statsMinutesLabel")} accent />
+            </StatCard>
 
-            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Tv className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
-                  {t("profile.statsShowsWatchedTitle")}
-                </span>
-              </div>
-              <div className="flex items-end gap-6 flex-wrap">
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.showsWatched.count}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsShowsLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.showsWatched.episodes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsEpisodesWatchedLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
-                    {stats.showsWatched.minutes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsMinutesLabel")}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <StatCard
+              icon={Tv}
+              title={t("profile.statsShowsWatchedTitle")}
+              footer={formatDuration(stats.showsWatched.minutes)}
+            >
+              <StatTile value={stats.showsWatched.count} label={t("profile.statsShowsLabel")} />
+              <StatTile value={stats.showsWatched.episodes} label={t("profile.statsEpisodesWatchedLabel")} />
+              <StatTile value={stats.showsWatched.minutes} label={t("profile.statsMinutesLabel")} accent />
+            </StatCard>
 
-            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Play className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
-                  {t("profile.statsShowsWatchingTitle")}
-                </span>
-              </div>
-              <div className="flex items-end gap-6 flex-wrap">
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.showsWatching.count}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsShowsLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.showsWatching.episodes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsEpisodesRemainingLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
-                    {stats.showsWatching.minutes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsMinutesRemainingLabel")}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <StatCard
+              icon={Play}
+              title={t("profile.statsShowsWatchingTitle")}
+              footer={formatDuration(stats.showsWatching.minutes)}
+            >
+              <StatTile value={stats.showsWatching.count} label={t("profile.statsShowsLabel")} />
+              <StatTile value={stats.showsWatching.episodes} label={t("profile.statsEpisodesRemainingLabel")} />
+              <StatTile value={stats.showsWatching.minutes} label={t("profile.statsMinutesRemainingLabel")} accent />
+            </StatCard>
 
-            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200/60 dark:border-zinc-800">
-              <div className="flex items-center gap-2 mb-4">
-                <Bookmark className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-                <span className="text-sm font-black uppercase tracking-wider text-zinc-500">
-                  {t("profile.statsShowsPendingTitle")}
-                </span>
-              </div>
-              <div className="flex items-end gap-6 flex-wrap">
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.showsPending.count}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsShowsLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-zinc-900 dark:text-zinc-50">
-                    {stats.showsPending.episodes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsEpisodesRemainingLabel")}
-                  </span>
-                </div>
-                <div>
-                  <span className="block text-4xl font-black text-yellow-600 dark:text-yellow-400">
-                    {stats.showsPending.minutes}
-                  </span>
-                  <span className="block text-xxs font-bold text-zinc-400 uppercase tracking-wider mt-1">
-                    {t("profile.statsMinutesRemainingLabel")}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <StatCard
+              icon={Bookmark}
+              title={t("profile.statsShowsPendingTitle")}
+              footer={formatDuration(stats.showsPending.minutes)}
+            >
+              <StatTile value={stats.showsPending.count} label={t("profile.statsShowsLabel")} />
+              <StatTile value={stats.showsPending.episodes} label={t("profile.statsEpisodesRemainingLabel")} />
+              <StatTile value={stats.showsPending.minutes} label={t("profile.statsMinutesRemainingLabel")} accent />
+            </StatCard>
           </div>
         )}
       </section>
